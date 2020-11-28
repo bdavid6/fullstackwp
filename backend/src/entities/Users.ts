@@ -22,6 +22,9 @@ export class Users {
     @Property()
     e_mail!: string;
 
+    @Property()
+    password!: string;
+
     @ManyToMany(() => Subject, 'users', { owner: true })
     subjects = new Collection<Subject>(this);
 

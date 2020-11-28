@@ -32,12 +32,12 @@ usersRouter
             res.sendStatus(404);
         }
     })
-    .post('/', async (req, res) => {
-        const user = new Users();
-        wrap(user).assign(req.body, { em: req.orm.em });
-        await req.userRepository!.persistAndFlush(user);
-        res.send(user);
-    })
+    // .post('/', async (req, res) => {
+    //     const user = new Users();
+    //     wrap(user).assign(req.body, { em: req.orm.em });
+    //     await req.userRepository!.persistAndFlush(user);
+    //     res.send(user);
+    // })
     .post('/:id/subjects', async (req, res) => {
         const id = parseInt(req.params.id);
         const user = await req.userRepository!.findOne({ id }, ['subjects']);
