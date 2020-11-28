@@ -2,7 +2,7 @@ import { Collection, Entity, Enum, ManyToMany, PrimaryKey, Property } from "@mik
 import { Subject } from "./Subject";
 
 @Entity()
-export class User {
+export class Users {
 
     @PrimaryKey()
     id!: number;

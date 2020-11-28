@@ -1,13 +1,13 @@
-import { Reference, wrap } from "@mikro-orm/core";
+import { wrap } from "@mikro-orm/core";
 import { Router } from "express";
 import { Subject } from "../entities/Subject";
-import { User } from "../entities/User";
+import { Users } from "../entities/Users";
 
 export const usersRouter = Router();
 
 usersRouter
     .use((req, res, next) => {
-        req.userRepository = req.orm.em.getRepository(User);
+        req.userRepository = req.orm.em.getRepository(Users);
         next();
     })
     .get('/', async (req, res) => {
@@ -26,14 +26,14 @@ usersRouter
     .get('/:id/subjects', async (req, res) => {
         const id = parseInt(req.params.id);
         const user = await req.userRepository!.findOne({ id }, ['subjects']);
-        if (user?.subjects) {
+        if (user) {
             res.send(user.subjects);
         } else {
             res.sendStatus(404);
         }
     })
     .post('/', async (req, res) => {
-        const user = new User();
+        const user = new Users();
         wrap(user).assign(req.body, { em: req.orm.em });
         await req.userRepository!.persistAndFlush(user);
         res.send(user);
