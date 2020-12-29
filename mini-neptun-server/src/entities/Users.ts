@@ -16,8 +16,8 @@ export class Users {
     @Enum()
     role!: Role;
 
-    @Property()
-    sum_credit?: number | null = null;
+    @Property({default: 0})
+    sum_credit!: number;
 
     @Property()
     e_mail!: string;
