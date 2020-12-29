@@ -17,7 +17,7 @@ export class Users {
     role!: Role;
 
     @Property()
-    sum_credit!: number | null;
+    sum_credit?: number | null = null;
 
     @Property()
     e_mail!: string;
