@@ -1,10 +1,33 @@
-<mat-card>
-    <form>
-        <mat-form-field appearance="legacy" color="accent">
-            <mat-label>Legacy form field</mat-label>
-            <input matInput placeholder="Placeholder">
-        </mat-form-field>
+<form [formGroup]="registerForm" (ngSubmit)="register(registerForm)">
 
-    </form>
-    <p>user works!</p>
-</mat-card>
+    <mat-form-field appearance="legacy" color="accent">
+        <mat-label>Név</mat-label>
+        <input matInput type="text" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy" color="accent">
+        <mat-label>Felhasználónév</mat-label>
+        <input matInput type="text" formControlName="username">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy" color="accent">
+        <mat-label>Jelszó</mat-label>
+        <input matInput type="password" formControlName="password">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy" color="accent">
+        <mat-label>E-Mail cím</mat-label>
+        <input matInput type="email" formControlName="e_mail">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy" color="accent">
+        <mat-label>Típus</mat-label>
+        <mat-select formControlName="role">
+            <mat-option [value]="'STUDENT'">Tanuló</mat-option>
+            <mat-option [value]="'ADMIN'">Admin</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" style="float: right;">Regisztáció</button>
+
+</form>

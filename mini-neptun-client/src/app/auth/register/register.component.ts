@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from 'src/app/core/interfaces/user';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -12,18 +14,27 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private as: AuthService,
   ) {
     this.registerForm = this.formBuilder.group({
-      username: 
-      name:
-      e_mail:
-      role:
-      sum_credit:
-      password:
+      username: [null, Validators.required],
+      name: [null, Validators.required],
+      e_mail: [null, [Validators.required, Validators.email]],
+      role: [null, Validators.required],
+      password: [null, Validators.required],
     })
   }
 
   ngOnInit(): void {
+  }
+
+  register(form: FormGroup) {
+    if(form.valid) {
+      console.log(form.value);
+      this.as.register(<User>form.value);
+    } else {
+      console.log(form.errors);
+    }
   }
 
 }
