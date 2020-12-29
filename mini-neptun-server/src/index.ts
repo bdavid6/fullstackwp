@@ -7,6 +7,8 @@ import { passport } from "./auth/passport";
 
 const app = express();
 
+const PORT = process.env.PORT || 3000;
+
 app.use(bodyParser.json());
 
 app.use(passport.initialize());
@@ -15,6 +17,6 @@ app.use(mikroorm(mikroOrmConfig));
 
 app.use(routes);
 
-app.listen(3000, () => {
-    console.log("Server started at port 3000");
+app.listen(PORT, () => {
+    console.log(`Server started on PORT: ${PORT}.`);
 });
