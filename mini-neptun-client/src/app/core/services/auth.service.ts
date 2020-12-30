@@ -24,4 +24,12 @@ export class AuthService {
       }
     );
   }
+
+  login(user: User) {
+    this.http.post<User>(`${baseUrl}/auth/login`, user, {headers: this.headers}).subscribe(
+      data => {
+        console.log(data);
+      }
+    );
+  }
 }
