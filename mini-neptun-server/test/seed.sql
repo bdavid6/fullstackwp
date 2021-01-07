@@ -8,3 +8,5 @@ insert into Building (name, floors, created_at, updated_at) values ('B epulet', 
 
 insert into Subject (name, code, description, credit, created_at, updated_at) values ('Matek', 2, 'desc..', 4, 2021, 2021);
 insert into Subject (name, code, description, credit, created_at, updated_at) values ('Prog', 1, 'desc..', 5, 2021, 2021);
+
+insert into Result (mark, created_at, updated_at) values (3, 2021, 2021);

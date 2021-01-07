@@ -12,12 +12,18 @@ authRouter
         next();
     })
     .post('/register', async (req, res) => {
+        const username: string = req.body.username;
         const password = req.body.password;
         req.body.password = passwordHash.generate(password);
-        const user = new Users();
-        wrap(user).assign(req.body);
-        await req.userRepository!.persistAndFlush(user);
-        res.send(user);
+        const user = await req.userRepository!.findOne({ username });
+        if (user) {
+            res.sendStatus(409);
+        } else {
+            const user = new Users();
+            wrap(user).assign(req.body);
+            await req.userRepository!.persistAndFlush(user);
+            res.send(user);
+        }
     })
     .post('/login', async (req, res) => {
         const username: string = req.body.username;
