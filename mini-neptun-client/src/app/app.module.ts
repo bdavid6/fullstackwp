@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { SubjectsComponent } from './subjects/subjects.component';
 // Angular Material
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,6 +27,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
+import { MatExpansionModule } from '@angular/material/expansion';
+
+
 
 
 @NgModule({
@@ -35,8 +40,8 @@ import { MatListModule } from '@angular/material/list';
     UserComponent,
     AuthComponent,
     SubjectsComponent,
-    SubjectComponent,
-    AddSubjectComponent
+      SubjectComponent,
+      AddSubjectComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +59,10 @@ import { MatListModule } from '@angular/material/list';
     MatTabsModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule,
+    MatExpansionModule,
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
