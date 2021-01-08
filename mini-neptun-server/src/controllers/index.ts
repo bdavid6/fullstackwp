@@ -9,19 +9,20 @@ import { resultsRouter } from "./results.controller";
 var cors = require("cors");
 
 const corsOptions = {
-    origin: 'http://henlo:4200/',
+    origin: 'http://localhost:4200/',
     optionsSuccessStatus: 200,
 }
 
 export const routes = Router();
 routes
+    .use(cors())
     .use('/users', usersRouter)
     .use('/auth', authRouter)
     .use('/subjects', passport.authenticate("jwt", { session: false }), subjectsRouter)
     .use('/buildings', passport.authenticate("jwt", { session: false }), buildingsRouter)
     .use('/results', passport.authenticate("jwt", { session: false }), resultsRouter)
 
-routes.use(cors());
+
 routes.options('*', cors(corsOptions), (req, res, next) => {
     res.send("Hello CORS Policy");
 });
