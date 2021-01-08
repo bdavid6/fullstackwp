@@ -2,7 +2,7 @@ import supertest from "supertest";
 import { app } from "../src/server";
 
 describe('Mini Neptun', () => {
-    const user = {name: 'name', username: 'username', password: 'password', role: 'STUDENT', e_mail: 'email' };
+    const user = {name: 'name', username: 'username', password: 'password', role: 'ADMIN', e_mail: 'email' };
   
     let requestHandle: supertest.SuperTest<supertest.Test>;
   
@@ -23,148 +23,86 @@ describe('Mini Neptun', () => {
         await requestHandle.post('/auth/login').send(user).expect(200);
       });
     });
-  /*
-    describe('Issue Controller', () => {
+  
+    describe('Users Controller', () => {
       let token: string;
   
       let time: Date;
-      let createdIssue: object;
+      let createdUser: object;
       beforeAll(() => {
         time = new Date();
         jest.useFakeTimers('modern');
         jest.setSystemTime(time);
-        createdIssue = {
+        createdUser = {
           id: 1,
-          status: 'NEW',
-          title: 'Rossz oktatói gép',
-          description: 'Nem kapcsol be',
-          place: '2-202',
+          username: 'username',
+          name: 'name',
+          role: 'ADMIN',
+          //sum_credit: 0,
+          e_mail: 'email',
+          password: 'password',
+          subjects: [],
           createdAt: time.toISOString(),
-          modifiedAt: time.toISOString(),
-          user: 3,
-          labels: [],
+          updatedAt: time.toISOString(),
         };
       });
       afterAll(() => {
         jest.useRealTimers();
       });
-  
+
       beforeEach(async () => {
-        const loginResponse = await requestHandle.post('/user/login').send(user);
+        const loginResponse = await requestHandle.post('/auth/login').send(user);
         token = `Bearer ${loginResponse.body.token}`;
       });
-  
-      describe('/issues', () => {
-        it('should not list when user is not provided', async () => {
-          await requestHandle.get('/issues').expect(401);
-        });
-  
-        it('should return empty array', async () => {
+
+      describe('/users', () => {
+        it('should return 200 when there are no users', async () => {
           await requestHandle
-            .get('/issues')
+            .get('/users')
             .set('Authorization', token)
             .expect(200)
-            .expect([]);
+            //.expect([]);
         });
-  
-        it('should create an issue', async () => {
+
+        it('should return when there are users', async () => {
           await requestHandle
-            .post('/issues')
-            .set('Authorization', token)
-            .send({
-              title: 'Rossz oktatói gép',
-              description: 'Nem kapcsol be',
-              place: '2-202',
-            })
-            .expect(200)
-            .expect({
-              ...createdIssue,
-              messages: [],
-            });
-        });
-  
-        it('should return the newly created issue in an array for the user', async () => {
-          await requestHandle
-            .get('/issues')
+            .get('/users/1')
             .set('Authorization', token)
             .expect(200)
-            .expect([createdIssue]);
         });
   
-        it('should not return the issue for another normal user', async () => {
-          const loginResponse = await requestHandle
-            .post('/user/login')
-            .send({ username: 'papi', password: 'papi' });
-          const otherToken = `Bearer ${loginResponse.body.token}`;
+      describe('/users/:id', () => {
+        it('should return 200 when the user does exist', async () => {
           await requestHandle
-            .get('/issues')
-            .set('Authorization', otherToken)
-            .expect(200)
-            .expect([]);
-        });
-  
-        it('should return the issue for an admin', async () => {
-          const loginResponse = await requestHandle
-            .post('/user/login')
-            .send({ username: 'admin', password: 'admin' });
-          const otherToken = `Bearer ${loginResponse.body.token}`;
-          await requestHandle
-            .get('/issues')
-            .set('Authorization', otherToken)
-            .expect(200)
-            .expect([createdIssue]);
-        });
-      });
-  
-      describe('/issues/:id', () => {
-        it('should not return anything when user is not provided', async () => {
-          await requestHandle.get('/issues/1').expect(401);
-        });
-  
-        it('should return the requested issue', async () => {
-          await requestHandle
-            .get('/issues/1')
+            .get('/users/1')
             .set('Authorization', token)
-            .expect(200)
-            .expect((res) => {
-              const userId = res.body.user.id;
-              res.body.user = userId;
-              expect(res.body).toEqual({ ...createdIssue, messages: [] });
-            });
+            .expect(200);
         });
   
-        it('should return 404 when the issue does not exist', async () => {
+        it('should return 404 when the user does not exist', async () => {
           await requestHandle
-            .get('/issues/10')
+            .get('/users/10')
             .set('Authorization', token)
             .expect(404);
         });
       });
-  
-      describe('/issues/:id/messages', () => {
-        it('should return the newly created message', async () => {
+
+      describe('/users/:id/subjects', () => {
+        it('should return empty array when the subjects does exist', async () => {
           await requestHandle
-            .post('/issues/1/messages')
+            .get('/users/1/subjects')
             .set('Authorization', token)
-            .send({
-              text: 'cica',
-            })
-            .expect(200)
-            .expect((res) => {
-              const userId = res.body.user.id;
-              res.body.user = userId;
-              expect(res.body).toEqual({
-                id: 1,
-                text: 'cica',
-                createdAt: time.toISOString(),
-                modifiedAt: time.toISOString(),
-                user: 3,
-                issue: 1,
-              });
-            });
+            .expect([]);
+        });
+  
+        it('should return 404 when the user does not exist', async () => {
+          await requestHandle
+            .get('/users/10/subjects')
+            .set('Authorization', token)
+            .expect(404);
         });
       });
-  
+  /*
       describe('/labels', () => {
         it('should return the newly created label', async () => {
           await requestHandle
@@ -217,8 +155,57 @@ describe('Mini Neptun', () => {
                 text: 'cica',
               }])
             });
+        });*/
+      });
+
+    describe('Results Controller', () => {
+      let token: string;
+  
+      let time: Date;
+      let createdResult: object;
+      beforeAll(() => {
+        time = new Date();
+        jest.useFakeTimers('modern');
+        jest.setSystemTime(time);
+        createdResult = {
+          id: 1,
+          mark: 3,
+          subject: null,
+          createdAt: '2021',
+          updatedAt: '2021',
+        };
+      });
+      afterAll(() => {
+        jest.useRealTimers();
+      });
+
+      beforeEach(async () => {
+        const loginResponse = await requestHandle.post('/auth/login').send(user);
+        token = `Bearer ${loginResponse.body.token}`;
+      });
+  
+      describe('/results/:id', () => {
+        it('should return 200 when the result does exist', async () => {
+          await requestHandle
+            .get('/results/1')
+            .set('Authorization', token)
+            .expect(200);
+        });
+  
+        it('should return 404 when the result does not exist', async () => {
+          await requestHandle
+            .get('/results/10')
+            .set('Authorization', token)
+            .expect(404);
+        });
+
+        it('should return 200 when the result does exist', async () => {
+          await requestHandle
+            .get('/results/1')
+            .set('Authorization', token)
+            .expect(createdResult);
         });
       });
     });
-    */
   });
+});
