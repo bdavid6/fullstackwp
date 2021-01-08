@@ -26,9 +26,10 @@ export class AuthService {
   }
 
   login(user: User) {
-    this.http.post<User>(`${baseUrl}/auth/login`, user, {headers: this.headers}).subscribe(
+    this.http.post<{token: string}>(`${baseUrl}/auth/login`, user, {headers: this.headers}).subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
+        localStorage.setItem('token', data.token);
       }
     );
   }

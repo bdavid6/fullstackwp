@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   login(form: FormGroup) {
     if(form.valid) {
       this.as.login(<User>form.value)
-      console.log(form.value);
+      // console.log(form.value);
     } else {
       console.log(form.errors);
     }
