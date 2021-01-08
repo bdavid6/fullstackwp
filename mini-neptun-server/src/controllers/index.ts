@@ -23,6 +23,6 @@ routes
     .use('/results', passport.authenticate("jwt", { session: false }), resultsRouter)
 
 
-routes.options('*', cors(corsOptions), (req, res, next) => {
-    res.send("Hello CORS Policy");
-});
+// routes.options('*', cors(corsOptions), (req, res, next) => {
+//     res.send("Hello CORS Policy");
+// });
