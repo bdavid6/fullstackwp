@@ -9,13 +9,13 @@ import { Title } from '@angular/platform-browser';
 export class AuthComponent implements OnInit {
 
   constructor(
-    private ts: Title,
+    private ts: Title, // Dokumentum címének beállítása.
   ) { }
 
   ngOnInit(): void {
   }
 
   public setTitle(title: string) {
-    this.ts.setTitle(title);
+    this.ts.setTitle(title); // Dokumentum címének beállítása a tab-ok közti váltáskor.
   }
 }

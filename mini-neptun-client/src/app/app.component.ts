@@ -10,13 +10,13 @@ export class AppComponent {
   title = 'Neptun';
 
   constructor(
-    private ts: Title,
+    private ts: Title,  // Az dokumentum címét lehet beállítani és lekérdezni ennek segítségével.
   ) {
     ts.setTitle(this.title);
   }
 
   public setTitle(title: string) {
-    this.ts.setTitle(title);
+    this.ts.setTitle(title);  // Dokumentum címének beállítása.
   }
 
 }
