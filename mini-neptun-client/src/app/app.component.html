@@ -1,1 +1,19 @@
-<router-outlet></router-outlet>
+<div class="grid">
+    <mat-toolbar class="header" color="accent">
+        <button mat-icon-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>Mini Neptun</span>
+    </mat-toolbar>
+    <mat-sidenav-container class="content">
+        <mat-sidenav #sidenav mode="over">
+            <mat-nav-list>
+                <mat-list-item routerLink="/" (click)="sidenav.toggle()">Főoldal</mat-list-item>
+                <mat-list-item routerLink="/auth" (click)="sidenav.toggle()">Bejelentkezés</mat-list-item>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
