@@ -18,4 +18,4 @@ routes
     .use('/results', passport.authenticate("jwt", { session: false }), resultsRouter)
 
 routes.use(cors());
-routes.options('*', cors({origin: 'http://localhost:4200/'}));
+routes.options('*', cors({origin: 'http://henlo:4200/'}));
