@@ -9,6 +9,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { UserComponent } from './user/user.component';
+import { SubjectsComponent } from './subjects/subjects.component';
+  import { SubjectComponent } from './subjects/subject/subject.component';
+  import { AddSubjectComponent } from './subjects/add-subject/add-subject.component';
 
 // Angular Material
 import { MatCardModule } from '@angular/material/card';
@@ -30,7 +33,10 @@ import { MatListModule } from '@angular/material/list';
     LoginComponent,
     RegisterComponent,
     UserComponent,
-    AuthComponent
+    AuthComponent,
+    SubjectsComponent,
+    SubjectComponent,
+    AddSubjectComponent
   ],
   imports: [
     BrowserModule,

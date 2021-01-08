@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$mini-neptun-primary: mat-palette($mat-orange);
+$mini-neptun-accent: mat-palette($mat-blue);
+$mini-neptun-warn: mat-palette($mat-red);
+
+$mini-neptun-theme: mat-light-theme((
+	color: (
+		primary: $mini-neptun-pimary,
+		accent: $mini-neptun-accent,
+		warn: $mini-neptun-warn,
+		)
+));
+
+@include angular-material-theme($mini-neptun-theme);
