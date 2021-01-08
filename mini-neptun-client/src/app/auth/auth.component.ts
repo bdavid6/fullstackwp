@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-auth',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private ts: Title,
+  ) { }
 
   ngOnInit(): void {
   }
 
+  public setTitle(title: string) {
+    this.ts.setTitle(title);
+  }
 }

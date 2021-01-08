@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'okt-rend-client';
+  title = 'Neptun';
+
+  constructor(
+    private ts: Title,
+  ) {
+    ts.setTitle(this.title);
+  }
+
+  public setTitle(title: string) {
+    this.ts.setTitle(title);
+  }
+
 }
