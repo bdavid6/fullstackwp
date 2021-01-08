@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --forceExit",
-    "pretest": "cross-env NODE_ENV=test npm run create:db && cross-env NODE_ENV=test mikro-orm database:import test/seed.sql" ,
+    "pretest": "cross-env NODE_ENV=test npm run create:db && cross-env NODE_ENV=test mikro-orm database:import test/seed.sql",
     "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
     "build": "tsc --project ./src --outDir dist",

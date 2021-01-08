@@ -14,6 +14,7 @@ const core_1 = require("@mikro-orm/core");
 const Subject_1 = require("./Subject");
 let Users = class Users {
     constructor() {
+        this.sum_credit = 0;
         this.subjects = new core_1.Collection(this);
         this.createdAt = new Date();
         this.updatedAt = new Date();

@@ -25,12 +25,19 @@ exports.authRouter
     next();
 })
     .post('/register', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const username = req.body.username;
     const password = req.body.password;
     req.body.password = password_hash_1.default.generate(password);
-    const user = new Users_1.Users();
-    core_1.wrap(user).assign(req.body);
-    yield req.userRepository.persistAndFlush(user);
-    res.send(user);
+    const user = yield req.userRepository.findOne({ username });
+    if (user) {
+        res.sendStatus(409);
+    }
+    else {
+        const user = new Users_1.Users();
+        core_1.wrap(user).assign(req.body);
+        yield req.userRepository.persistAndFlush(user);
+        res.send(user);
+    }
 }))
     .post('/login', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const username = req.body.username;
@@ -38,7 +45,7 @@ exports.authRouter
     const user = yield req.userRepository.findOne({ username });
     if (user) {
         if (password_hash_1.default.verify(password, user === null || user === void 0 ? void 0 : user.password)) {
-            res.send(jwt_1.generateToken(user));
+            res.send({ token: jwt_1.generateToken(user) });
         }
         else {
             res.sendStatus(401);
