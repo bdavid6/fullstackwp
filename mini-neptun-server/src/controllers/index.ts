@@ -18,3 +18,4 @@ routes
     .use('/results', passport.authenticate("jwt", { session: false }), resultsRouter)
 
 routes.use(cors());
+routes.options('*', cors());
