@@ -8,6 +8,10 @@ import { resultsRouter } from "./results.controller";
 
 var cors = require("cors");
 
+const corsOptions = {
+    origin: 'http://henlo:4200/',
+    optionsSuccessStatus: 200,
+}
 
 export const routes = Router();
 routes
@@ -18,4 +22,6 @@ routes
     .use('/results', passport.authenticate("jwt", { session: false }), resultsRouter)
 
 routes.use(cors());
-routes.options('*', cors({origin: 'http://henlo:4200/'}));
+routes.options('*', cors(corsOptions), (req, res, next) => {
+    res.send("Hello CORS Policy");
+});
