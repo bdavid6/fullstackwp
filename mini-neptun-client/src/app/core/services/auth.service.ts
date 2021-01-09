@@ -4,6 +4,7 @@ import { baseUrl } from 'src/environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../interfaces/user';
 import { Router } from '@angular/router';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
+    private ns: NotificationService
   ) { }
 
   isLogin$ = new BehaviorSubject<boolean>(this.hasToken());
@@ -34,6 +36,7 @@ export class AuthService {
     this.http.post<User>(`${baseUrl}/auth/register`, user, {headers: this.headers}).subscribe(
       data => {
         console.log(data);
+        this.ns.show('Regisztráció sikeres');
       }
     );
   }
@@ -44,11 +47,11 @@ export class AuthService {
         // console.log(data);
         localStorage.setItem('token', data.token);
         this.isLogin$.next(true);
-        //this.ns.show('Sikeres bejelentkezés!');
+        this.ns.show('Sikeres bejelentkezés');
         this.router.navigate(['/subjects']);
       },
       error => {
-        //this.ns.show('HIBA! Bejelentkezés sikertelen!');
+        this.ns.show('Bejelentkezés sikertelen');
         console.error(error);
       }
     );
@@ -57,7 +60,7 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('token');
     this.isLogin$.next(false);
-    //this.ns.show('Sikeres kijelentkezés!');
+    this.ns.show('Kijelentkezés sikeres');
     this.router.navigate(['/']);
   }
 }

@@ -11,7 +11,7 @@
                 <mat-list-item routerLink="/" (click)="sidenav.toggle(); setTitle('Főoldal')">Főoldal</mat-list-item>
                 <mat-list-item routerLink="/subjects" (click)="sidenav.toggle(); setTitle('Tárgyak')">Tárgyak</mat-list-item>
                 <!--<mat-list-item routerLink="/auth" (click)="sidenav.toggle(); setTitle('Bejelentkezés')">Bejelentkezés</mat-list-item>-->
-                <mat-list-item *ngIf="(isLoggedIn$ | async)" (click)="logout()" matRipple>Kijelentkezés</mat-list-item>
+                <mat-list-item *ngIf="(isLoggedIn$ | async)" (click)="logout(); sidenav.toggle() ">Kijelentkezés</mat-list-item>
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content>

@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from 'src/app/core/interfaces/user';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { NotificationService } from 'src/app/core/services/notification.service';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +18,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private as: AuthService,
+    private ns: NotificationService,
+
   ) {
     this.registerForm = this.formBuilder.group({
       username: [null, Validators.required],
@@ -35,6 +38,7 @@ export class RegisterComponent implements OnInit {
       this.as.register(<User>form.value);
     } else {
       console.log(form.errors);
+      this.ns.show("Töltse ki az üres mezőket");
     }
   }
 }

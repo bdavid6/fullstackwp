@@ -28,6 +28,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -63,6 +64,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatDialogModule,
     MatExpansionModule,
     FlexLayoutModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
