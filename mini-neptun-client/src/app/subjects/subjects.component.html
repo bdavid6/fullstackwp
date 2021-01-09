@@ -8,11 +8,12 @@
               #{{ subject.name }}
           </mat-panel-title>
           <mat-panel-description>
-              {{ subject.description }}
+              {{ subject.description.length > 20 ? subject.description.slice(0, 20) + "..." : subject.description }}
           </mat-panel-description>
       </mat-expansion-panel-header>
         {{ subject.code }}<br>
-        {{ subject.credit }}
+        {{ subject.credit }}<br>
+        <div style="text-align: justify;">{{ subject.description }}</div>
         <mat-action-row>
           <button mat-button color="basic">Módosítás</button>
           <button mat-button color="warn" (click)="deleteSubject(subject.id)">Törlés</button>
