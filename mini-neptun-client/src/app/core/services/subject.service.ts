@@ -19,6 +19,7 @@ export class SubjectService {
   )*/
 
   public subjects$ = new BehaviorSubject<Subject[]>([])
+  public subject$ = new BehaviorSubject<Subject>(<Subject>{})
 
   constructor(
     private http: HttpClient,
@@ -32,6 +33,17 @@ export class SubjectService {
     this.http.get<Subject[]>(`${baseUrl}/subjects` ,{headers: header}).subscribe(
       i => {
         this.subjects$.next(i);
+      }
+    )
+  }
+
+  public getSubject(id: number): void {
+    const header = new HttpHeaders().set(
+      'Authorization', `Bearer ${localStorage.getItem('token')}`
+    );
+    this.http.get<Subject>(`${baseUrl}/subjects/${id}` ,{headers: header}).subscribe(
+      i => {
+        this.subject$.next(i);
       }
     )
   }
@@ -52,6 +64,30 @@ export class SubjectService {
     )
   }
 
+  public modifySubject(subject: Subject) {
+    const header = new HttpHeaders().set(
+      'Authorization', `Bearer ${localStorage.getItem('token')}`
+    );
+    this.http.put<Subject>(`${baseUrl}/subjects/${subject.id}`, subject ,{headers: header}).subscribe(
+      () => {
+        // this.subjects$.next(this.subjects$.getValue().concat([newsubjet]));
+        let s: Subject[] = this.subjects$.getValue().map<Subject>(element => {
+          if(element.id === subject.id){
+            return subject;
+          }
+          return element;
+        });
+        this.subjects$.next(s);
+        this.ns.show('Tárgy módosítva');
+      },
+      error => {
+        this.ns.show('Nem sikerült módosítani');
+        console.error(error);
+        console.log(subject.id)
+      }
+    )
+  }
+
   public deleteSubject(id: number) {
     const header = new HttpHeaders({
       'Content-Type': 'text/html',
@@ -59,9 +95,10 @@ export class SubjectService {
     });
     this.http.delete(`${baseUrl}/subjects/${id}`, {headers: header, responseType: 'text'}).subscribe(
       res => {
-        this.getSubjects(); // A még létező tárgyak listájának frissítése.
+        let s: Subject[] = this.subjects$.getValue().filter(element => element.id !== id);
+        this.subjects$.next(s);
         console.log(res);
-        this.ns.show('Térgy törlése megtörtént!');
+        this.ns.show('Tárgy törlése megtörtént!');
       },
       error => {
         this.ns.show('Nem sikerült törölni');

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 //import { AuthService } from '../core/services/auth.service';
 import { SubjectService } from '../core/services/subject.service';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
+import { ModifySubjectComponent } from './modify-subject/modify-subject.component';
 
 @Component({
   selector: 'app-subjects',
@@ -29,6 +30,14 @@ export class SubjectsComponent implements OnInit {
 
   openAddSubject(): void{
 		const dialogRef = this.dialog.open(AddSubjectComponent, {
+      height: '400px',
+      width: '700px',
+    });
+  }
+
+  openModifySubject(id: number): void{
+    this.ss.getSubject(id);
+		const dialogRef = this.dialog.open(ModifySubjectComponent, {
       height: '400px',
       width: '700px',
     });

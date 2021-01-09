@@ -33,6 +33,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { AuthGuard } from './core/guards/auth.guard';
 import { AnonymGuard } from './core/guards/anonym.guard';
+import { ModifySubjectComponent } from './subjects/modify-subject/modify-subject.component';
 
 
 
@@ -48,6 +49,7 @@ import { AnonymGuard } from './core/guards/anonym.guard';
       SubjectComponent,
       AddSubjectComponent,
     PagenotfoundComponent,
+    ModifySubjectComponent,
   ],
   imports: [
     BrowserModule,
