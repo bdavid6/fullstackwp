@@ -12,12 +12,9 @@ mat-form-field {
 }
 
 /* width */
-body ::-webkit-scrollbar {
-    width: 4px;
-}
-
 ::-webkit-scrollbar {
     width: 7px;
+    height: 7px;
 }
 
 /* Track */
