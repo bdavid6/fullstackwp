@@ -2,14 +2,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthComponent } from './auth/auth.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { AnonymGuard } from './core/guards/anonym.guard';
+import { AuthGuard } from './core/guards/auth.guard';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { SubjectsComponent } from './subjects/subjects.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
-  {path: 'user', component: UserComponent},
-  {path: 'auth', component: AuthComponent},
-  {path: 'subjects', component: SubjectsComponent},
+  {path: 'user', component: UserComponent, canActivate: [AuthGuard]},
+  {path: 'auth', component: AuthComponent, canActivate: [AnonymGuard]},
+  {path: 'subjects', component: SubjectsComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: 'auth', pathMatch: 'full'},
   {path: '404', component: PagenotfoundComponent},
   {path: '**', redirectTo: '404', pathMatch: 'full'},

@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../interfaces/user';
 import { Router } from '@angular/router';
 import { NotificationService } from './notification.service';
+import decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -48,8 +49,10 @@ export class AuthService {
   login(user: User) {
     this.http.post<{token: string}>(`${baseUrl}/auth/login`, user, {headers: this.headers}).subscribe(
       data => {
-        // console.log(data);
+        const tokenPayload = decode<User>(data.token);
+
         localStorage.setItem('token', data.token);
+        localStorage.setItem('role', tokenPayload.role);
         this.isLogin$.next(true);
         this.ns.show('Sikeres bejelentkezés');
         this.router.navigate(['/subjects']);
@@ -63,6 +66,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
     this.isLogin$.next(false);
     this.ns.show('Kijelentkezés sikeres');
     this.router.navigate(['/']);

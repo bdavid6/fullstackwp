@@ -31,6 +31,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { AuthGuard } from './core/guards/auth.guard';
+import { AnonymGuard } from './core/guards/anonym.guard';
 
 
 
@@ -70,7 +72,10 @@ import { MatMenuModule } from '@angular/material/menu';
     MatSnackBarModule,
     MatMenuModule,
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    AnonymGuard,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
