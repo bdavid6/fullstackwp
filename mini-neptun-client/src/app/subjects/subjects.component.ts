@@ -32,6 +32,10 @@ export class SubjectsComponent implements OnInit {
       height: '400px',
       width: '700px',
     });
-	}
+  }
+  
+  deleteSubject(id: number): void {
+    this.ss.deleteSubject(id);
+  }
 
 }

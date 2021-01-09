@@ -30,6 +30,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
@@ -67,6 +68,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     MatExpansionModule,
     FlexLayoutModule,
     MatSnackBarModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

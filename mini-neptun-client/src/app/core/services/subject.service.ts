@@ -49,7 +49,24 @@ export class SubjectService {
         this.ns.show('Nem sikerült létrehozni');
         console.error(error);
       }
+    )
+  }
 
+  public deleteSubject(id: number) {
+    const header = new HttpHeaders({
+      'Content-Type': 'text/html',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    });
+    this.http.delete(`${baseUrl}/subjects/${id}`, {headers: header, responseType: 'text'}).subscribe(
+      res => {
+        this.getSubjects(); // A még létező tárgyak listájának frissítése.
+        console.log(res);
+        this.ns.show('Térgy törlése megtörtént!');
+      },
+      error => {
+        this.ns.show('Nem sikerült törölni');
+        console.error(error);
+      }
     )
   }
 }

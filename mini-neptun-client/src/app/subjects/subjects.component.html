@@ -1,20 +1,26 @@
 <!--<div *ngIf="(isLoggedIn$ | async)">-->
-<div class="subjectLoop" *ngFor="let subject of (ss.subjects$ | async)">
-  <mat-accordion multi>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
+<div class="accordion-wrapper">
+  <!-- <mat-accordion multi> -->
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let subject of (ss.subjects$ | async)">
+      <mat-expansion-panel-header>
           <mat-panel-title>
               #{{ subject.name }}
           </mat-panel-title>
           <mat-panel-description>
               {{ subject.description }}
           </mat-panel-description>
-        </mat-expansion-panel-header>
-          {{ subject.code }}
-          {{ subject.credit }}
-      </mat-expansion-panel>
+      </mat-expansion-panel-header>
+        {{ subject.code }}<br>
+        {{ subject.credit }}
+        <mat-action-row>
+          <button mat-button color="basic">Módosítás</button>
+          <button mat-button color="warn" (click)="deleteSubject(subject.id)">Törlés</button>
+        </mat-action-row>
+    </mat-expansion-panel>
   </mat-accordion>
 </div>
+
 <button mat-mini-fab color="accent" class="add-button" (click)="openAddSubject()" matTooltip="Új tárgy felvétele">
   <mat-icon>add</mat-icon>
 </button>
