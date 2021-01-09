@@ -1,3 +1,7 @@
+.mat-sidenav {
+    width: 250px;
+}
+
 .grid{
     display: grid;
     grid-template-rows: min-content auto;
@@ -7,9 +11,6 @@
 
 .header{
     grid-area: header;
-}
-.mat-sidenav {
-    width: 250px;
 }
 
 .content{
