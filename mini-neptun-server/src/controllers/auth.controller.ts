@@ -31,7 +31,7 @@ authRouter
         const user = await req.userRepository!.findOne({ username });
         if (user) {
             if (passwordHash.verify(password, user?.password)) {
-                res.send({token: generateToken(user)});
+                res.send({token: generateToken(user), role: user.role});
             } else {
                 res.sendStatus(401);
             }
