@@ -1,18 +1,21 @@
-<div class="subjectLoop" *ngFor="let subject of ss.getSubjects()">
-    <mat-accordion multi>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-                #{{ subject.name }}
-            </mat-panel-title>
-            <mat-panel-description>
-                {{ subject.description }}
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-            {{ subject.code }}
-        </mat-expansion-panel>
-    </mat-accordion>
-  </div>
-  <button mat-mini-fab color="accent" class="add-button" (click)="openAddSubject()" matTooltip="Új tárgy felvétele">
-    <mat-icon>add</mat-icon>
-  </button>
+<!--<div *ngIf="(isLoggedIn$ | async)">-->
+<div class="subjectLoop" *ngFor="let subject of (ss.subjects$ | async)">
+  <mat-accordion multi>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+              #{{ subject.name }}
+          </mat-panel-title>
+          <mat-panel-description>
+              {{ subject.description }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+          {{ subject.code }}
+          {{ subject.credit }}
+      </mat-expansion-panel>
+  </mat-accordion>
+</div>
+<button mat-mini-fab color="accent" class="add-button" (click)="openAddSubject()" matTooltip="Új tárgy felvétele">
+  <mat-icon>add</mat-icon>
+</button>
+<!--</div>-->
