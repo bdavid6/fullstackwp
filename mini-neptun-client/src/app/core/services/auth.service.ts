@@ -37,6 +37,10 @@ export class AuthService {
       data => {
         console.log(data);
         this.ns.show('Regisztráció sikeres');
+      },
+      error => {
+        this.ns.show('Regisztráció sikertelen');
+        console.error(error);
       }
     );
   }
