@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'subjects', component: SubjectsComponent},
   {path: '', redirectTo: 'auth', pathMatch: 'full'},
   {path: '404', component: PagenotfoundComponent},
-    {path: '**', redirectTo: '404', pathMatch: 'full'},
+  {path: '**', redirectTo: '404', pathMatch: 'full'},
 ];
 
 @NgModule({
