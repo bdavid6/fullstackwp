@@ -19,21 +19,20 @@ export class ModifySubjectComponent implements OnInit {
     private formBuilder: FormBuilder,
     private ns: NotificationService,
   ) {
-    this.modifySubjectForm = this.formBuilder.group({
-      name: [null, Validators.required],
-      code: [null, Validators.required],
-      description: [null, Validators.required],
-      credit: [null, Validators.required],
-    });
+    this.ss.subject$.subscribe(
+      value => {
+        this.id = value.id;
+        this.modifySubjectForm = this.formBuilder.group({
+          name: [value.name, Validators.required],
+          code: [value.code, Validators.required],
+          description: [value.description, Validators.required],
+          credit: [value.credit, Validators.required],
+        });
+      }
+    )
   }
 
   ngOnInit(): void {
-  }
-
-  getSubject(): Subject {
-    const s = this.ss.subject$.value;
-    this.id = s.id;
-    return s;
   }
 
   modifySubject(form: FormGroup): void {
@@ -44,7 +43,7 @@ export class ModifySubjectComponent implements OnInit {
       console.log(form.value)
     } else {
       this.ns.show("Nem sikerült módosítani (component)")
-      console.log(form.value)
+      console.log(subject)
     }
   }
 }
