@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { AuthService } from './core/services/auth.service';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent {
 
   constructor(
     private ts: Title,  // Az dokumentum címét lehet beállítani és lekérdezni ennek segítségével.
-    protected as: AuthService
+    protected as: AuthService,
+    public router: Router
   ) {
     ts.setTitle(this.title);
     this.isLoggedIn$ = as.isLoggedIn();

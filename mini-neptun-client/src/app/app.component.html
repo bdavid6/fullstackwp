@@ -1,4 +1,4 @@
-<div class="grid">
+<div class="grid" *ngIf="router.url !== '/404'; else notfound">
     <mat-toolbar class="header" color="accent">
         <button mat-icon-button (click)="sidenav.toggle()">
             <mat-icon>menu</mat-icon>
@@ -19,3 +19,6 @@
         </mat-sidenav-content>
     </mat-sidenav-container>
 </div>
+<ng-template #notfound>
+    <router-outlet></router-outlet>
+</ng-template>

@@ -29,6 +29,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 
 
@@ -42,7 +43,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AuthComponent,
     SubjectsComponent,
       SubjectComponent,
-      AddSubjectComponent
+      AddSubjectComponent,
+    PagenotfoundComponent,
   ],
   imports: [
     BrowserModule,
