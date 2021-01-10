@@ -46,7 +46,6 @@ export class ModifySubjectComponent implements OnInit {
     subject.id = this.id;
     if(form.valid) {
       this.ss.modifySubject(subject);
-      console.log(form.value)
     } else {
       this.ns.show("Nem sikerült módosítani (component)")
       console.log(subject)

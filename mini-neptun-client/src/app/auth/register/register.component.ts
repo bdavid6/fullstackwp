@@ -35,6 +35,7 @@ export class RegisterComponent implements OnInit {
   register(form: FormGroup) {
     if(form.valid) {
       this.as.register(<User>form.value);
+      this.registerForm.reset();
     } else {
       console.log(form.errors);
       this.ns.show("Töltse ki az üres mezőket");

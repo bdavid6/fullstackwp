@@ -61,6 +61,9 @@ export class AuthService {
         const tokenPayload = decode<User>(data.token);
 
         localStorage.setItem('token', data.token);
+        //id
+        let userId: number = parseInt(atob(data.token.split('.')[1]).split(':')[1].split(',')[0]);
+        //console.log(userId)
         //ADMIN = true, SUDENT = false
         if(tokenPayload.role == 'ADMIN') {
           this.userRole$.next(true);

@@ -34,6 +34,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { AuthGuard } from './core/guards/auth.guard';
 import { AnonymGuard } from './core/guards/anonym.guard';
 import { ModifySubjectComponent } from './subjects/modify-subject/modify-subject.component';
+import { MatDividerModule } from '@angular/material/divider';
+
 
 
 
@@ -73,6 +75,7 @@ import { ModifySubjectComponent } from './subjects/modify-subject/modify-subject
     FlexLayoutModule,
     MatSnackBarModule,
     MatMenuModule,
+    MatDividerModule,
   ],
   providers: [
     AuthGuard,
