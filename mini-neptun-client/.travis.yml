@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+- '15'
+sudo: false
+branches:
+  only:
+  - main
+cache:
+  directories:
+  - node_modules
+before_script:
+- npm install -g @angular/cli
+script: echo "npm test temporarily disabled"
+deploy:
+  provider: heroku
+  skip_cleanup: true
+  keep-history: true
+  api_key:
+    secure: Jl2A5TIODqdMGrk22ZXOOJ9Om4C5Pj9+359+077QaFCMPaYoiFp8zeYjmadE7KBIgA8p8m5ITcCnEgf1Hm5QrBtb6Mx6V7RFn9kgqwr5H83y6AjVKw/k+5ZrxdelXMEBZGvpTOlf43JBe3mjp1N1NY41sVI4DnGjX0X3c4l1Ioo8H3sod2Wta5ZUcbxMsCF8B8Y3Wutb3zN37Byuy/fJXHd5a8v/ewnfRhb8LbO/FlDuKzGWCMNRLkFSgxserdwBRhOdgqfMU/u59jnFUxQFmIpR6mo/bLJQMiSU94AXKJG2ggffrE7wUdUl1Lc6HaTwhN/bA/nW/XHQ1nqeXonRwF4W0Br8UB/QCXRML2PELIGRv4N2zDjW9X3cexHOU+zJSnY9EntYYn7NLvfNTaccwQQQxWjv0UIkLYIn4gwm9LqIMQH0+Us7o7YT4RnD1lcBtmUbadE2yOQLEKwpblf09SE1+jFUI/pVw9/SoJOrb/Q39Ps6od5cg661dAlN79TQcqVx3dndilRnJplQOqE4XWZeZPUZst5B2j8USWrHd/msVYDJ28tmjlsiYuk4VljNq3QyJ6mIZqv4YTscLNOIVgx1qUUtl/7BfwS9HHQZ6BpvdzfydZIW+7DUK3/FToYPKf88uj5ntdOn37Q2diXkPpGxhbtEkXC0wBGX487IWkU=
+  app: mini-neptun-server

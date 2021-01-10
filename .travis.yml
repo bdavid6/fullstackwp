@@ -1,0 +1,16 @@
+jobs:
+  include:
+  - language: node_js
+    node_js: node
+    cache:
+      directories:
+      - node_modules
+    before_install: cd mini-neptun-server
+    after_success: npm build
+    deploy:
+      skip_cleanup: true
+      provider: heroku
+      api_key:
+        secure: fYTYW5j3iPwK5d3yohNTawMQQhpOl+tP0L65PRF1/qDCcXQLI0vtDyrmJ9jePkWqaUAN7o0gZpq+PPxwIJbCr4Q2WVKlxr8kuS23MWl2i7pfWqwPbM08ps9hYhuIhtwKmV+7MJ5Q0OlVjcGVEp6VuxglV0njsZhm+H35w7rz8dHKWoAVX6R3wsW4yfJ0aH0E1c09x6Xe4/1vbn2STxH0dPYJsfAcWtjMAOf8Y3zBivLLWPDByKdspvm5yTBpxuRiksfxEFJ+oezJa/pbIwAezouLdX6TawXIizmx+P4Df7QrsqWn6l8caYmeTTvHZk/ULhFWcp+1w2sZxB9U2/AP70cvJNhOz3rPn6Fj7fVHK0pvDyLiBC/3v0AhBjHXS/2JVhtyLxqjANdtYTtCkFpQOkDFokZ39zZNSI5Xbg3QIWSbySfH7a2S3b6vkGFbsagbJwhOTUzoaXzeC+GR6sWQwAkSPcizhpdf0+ETrO4bBgLYItLos6TfRqBn2G50IbBAb/M6mUE05SgpA8AOSekIn+rzkE5yQLvHZre2eNUnq+SXzV6RYzXVc18D8ICXUMdP2R29R6/d/ErM6llg3SefoTmBCV9WwaeSxZEGLOIr5oCZ5eFG3GRqzM6CNMUAMIu6Hd5Ou/OfrXvrtf5EdhYaWD3eHYKAnDCyOkWVqkxDmhg=
+      app: mini-neptun-server
+      on: main
