@@ -38,8 +38,4 @@ export class AppComponent {
     logout(): void {
         this.as.logout();
     }
-
-    logBuildings(): void {
-        this.bs.getBuildings();
-    }
 }

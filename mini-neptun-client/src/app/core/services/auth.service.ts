@@ -6,6 +6,7 @@ import { User } from '../interfaces/user';
 import { Router } from '@angular/router';
 import { NotificationService } from './notification.service';
 import decode from 'jwt-decode';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,8 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private ns: NotificationService
+    private ns: NotificationService,
+    private us: UserService,
   ) { }
 
   isLogin$ = new BehaviorSubject<boolean>(this.hasToken());
@@ -31,7 +33,12 @@ export class AuthService {
   }
 
   protected checkRole(): boolean {
-    return !!localStorage.getItem('role');
+    if (this.hasToken()) {
+      if (decode<User>(localStorage.getItem('token')!).role == 'ADMIN') {
+        return true;
+      }
+    }
+    return false;
   }
 
   isLoggedIn(): Observable<boolean> {
@@ -43,7 +50,7 @@ export class AuthService {
   }
 
   register(user: User) {
-    this.http.post<User>(`${baseUrl}/auth/register`, user, {headers: this.headers}).subscribe(
+    this.http.post<User>(`${baseUrl}/auth/register`, user, { headers: this.headers }).subscribe(
       data => {
         console.log(data);
         this.ns.show('Regisztráció sikeres');
@@ -56,7 +63,7 @@ export class AuthService {
   }
 
   login(user: User) {
-    this.http.post<{token: string}>(`${baseUrl}/auth/login`, user, {headers: this.headers}).subscribe(
+    this.http.post<{ token: string }>(`${baseUrl}/auth/login`, user, { headers: this.headers }).subscribe(
       data => {
         const tokenPayload = decode<User>(data.token);
 
@@ -65,12 +72,13 @@ export class AuthService {
         let userId: number = parseInt(atob(data.token.split('.')[1]).split(':')[1].split(',')[0]);
         //console.log(userId)
         //ADMIN = true, SUDENT = false
-        if(tokenPayload.role == 'ADMIN') {
+        if (tokenPayload.role == 'ADMIN') {
           this.userRole$.next(true);
         } else {
           this.userRole$.next(false);
         }
         this.isLogin$.next(true);
+        this.us.getUser(decode<{ sub: number }>(localStorage.getItem('token')!).sub);
         this.ns.show('Sikeres bejelentkezés');
         this.router.navigate(['/subjects']);
       },

@@ -22,11 +22,14 @@ export class SubjectsComponent implements OnInit {
     private as: AuthService
   ) { 
     this.userRole$ = as.getRole();
+    this.userRole$.subscribe(v => {console.log(v)});
   }
 
   ngOnInit(): void {
     this.ss.getSubjects();
-    this.ss.getSubject(this.ss.subjects$.getValue()[0].id);
+    if(this.ss.subjects$.value.length > 0){
+      this.ss.getSubject(this.ss.subjects$.getValue()[0].id);
+    }
   }
 
   openAddSubject(): void{
