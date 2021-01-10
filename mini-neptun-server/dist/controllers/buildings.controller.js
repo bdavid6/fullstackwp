@@ -22,10 +22,18 @@ exports.buildingsRouter
     .get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const buildings = yield req.buildingRepository.findAll();
     res.send(buildings);
-}))
+})) //NINCS HASZNÁLVA
     .post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const building = new Building_1.Building();
-    core_1.wrap(building).assign(req.body, { em: req.orm.em });
-    yield req.buildingRepository.persistAndFlush(building);
-    res.send(building);
+    const name = req.body.name;
+    const building = yield req.buildingRepository.findOne({ name });
+    if (building) {
+        res.status(200).send({ id: building.id });
+    }
+    else {
+        const building = new Building_1.Building();
+        core_1.wrap(building).assign(req.body);
+        //wrap(building).assign(req.body, { em: req.orm.em });
+        yield req.buildingRepository.persistAndFlush(building);
+        res.status(200).send({ id: building.id });
+    }
 }));

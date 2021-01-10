@@ -11,7 +11,7 @@ jobs:
     script:
       - echo "npm test temporarily disabled"
     install: true
-    after_success: npm build
+    after_success: npm run build
     deploy:
       skip_cleanup: true
       provider: heroku
