@@ -10,12 +10,12 @@ subjectsRouter
         next();
     })
     .get('/', async (req, res) => {
-        const subjects = await req.subjectRepository!.findAll(['users']);
+        const subjects = await req.subjectRepository!.findAll(['users', 'building']);
         res.send(subjects);
     })
     .get('/:id', async (req, res) => {
         const id = parseInt(req.params.id);
-        const subject = await req.subjectRepository!.findOne({ id }, ['users']);
+        const subject = await req.subjectRepository!.findOne({ id }, ['users', 'building']);
         if (subject){
             wrap(subject).assign(req.body, { em: req.orm.em });
             await req.subjectRepository!.persistAndFlush(subject);
