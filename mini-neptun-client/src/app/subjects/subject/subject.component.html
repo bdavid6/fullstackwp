@@ -1,21 +1,21 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title>{{(ss.subject$ | async).name}}</mat-card-title>
-        <mat-card-subtitle>{{(ss.subject$ | async).code}}</mat-card-subtitle>
+        <mat-card-title>{{(ss.subject$ | async)!.name}}</mat-card-title>
+        <mat-card-subtitle>{{(ss.subject$ | async)!.code}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
         <div class="desc">
             <h3>Leírás:</h3>
-            {{(ss.subject$ | async).description}}
+            {{(ss.subject$ | async)!.description}}
         </div>
         <table>
             <tr>
                 <td>kredit érték:</td>
-                <td>{{(ss.subject$ | async).credit}}</td>
+                <td>{{(ss.subject$ | async)!.credit}}</td>
             </tr>
             <tr>
                 <td>Terem:</td>
-                <td>{{(ss.subject$ | async).room}}</td>
+                <td>{{(ss.subject$ | async)!.room}}</td>
             </tr>
         </table>
     </mat-card-content>
