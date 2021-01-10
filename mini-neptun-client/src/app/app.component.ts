@@ -39,7 +39,7 @@ export class AppComponent {
     getUser(): void {
         // this.us.getUser()
         if(this.as.isLoggedIn()){
-            console.log(decode<User>(localStorage.getItem('token')!));
+            console.log(decode<{sub: number}>(localStorage.getItem('token')!).sub);
         }
     }
 }
