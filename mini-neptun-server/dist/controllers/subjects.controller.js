@@ -20,12 +20,12 @@ exports.subjectsRouter
     next();
 })
     .get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const subjects = yield req.subjectRepository.findAll(['users']);
+    const subjects = yield req.subjectRepository.findAll(['users', 'building']);
     res.send(subjects);
 }))
     .get('/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = parseInt(req.params.id);
-    const subject = yield req.subjectRepository.findOne({ id }, ['users']);
+    const subject = yield req.subjectRepository.findOne({ id }, ['users', 'building']);
     if (subject) {
         core_1.wrap(subject).assign(req.body, { em: req.orm.em });
         yield req.subjectRepository.persistAndFlush(subject);

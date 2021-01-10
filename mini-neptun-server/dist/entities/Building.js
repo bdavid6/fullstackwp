@@ -28,10 +28,6 @@ __decorate([
     __metadata("design:type", String)
 ], Building.prototype, "name", void 0);
 __decorate([
-    core_1.Property(),
-    __metadata("design:type", Number)
-], Building.prototype, "floors", void 0);
-__decorate([
     core_1.OneToMany(() => Subject_1.Subject, subject => subject.building),
     __metadata("design:type", Object)
 ], Building.prototype, "subjects", void 0);
