@@ -10,6 +10,9 @@
           <mat-panel-description>
               {{ subject.description.length > 20 ? subject.description.slice(0, 20) + "..." : subject.description }}
           </mat-panel-description>
+          <mat-panel-description>
+            {{ subject.building }}
+        </mat-panel-description>
       </mat-expansion-panel-header>
         {{ subject.code }}<br>
         {{ subject.credit }}<br>

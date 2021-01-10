@@ -10,9 +10,6 @@ export class Building {
     @Property()
     name!: string;
 
-    @Property()
-    floors!: number;
-
     @OneToMany(() => Subject, subject => subject.building)
     subjects = new Collection<Subject>(this);
 

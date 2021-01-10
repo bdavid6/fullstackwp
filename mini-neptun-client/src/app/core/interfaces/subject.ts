@@ -4,4 +4,5 @@ export interface Subject {
     code: number,
     description: string,
     credit: number,
+    building: string
 }

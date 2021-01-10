@@ -10,6 +10,7 @@ import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
   {path: 'user', component: UserComponent, canActivate: [AuthGuard]},
+  //{path: 'buildings', component: BuildingsComponent, canActivate: [AuthGuard]}, NEM FOG MUKODNI A .post /buildings
   {path: 'auth', component: AuthComponent, canActivate: [AnonymGuard]},
   {path: 'subjects', component: SubjectsComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: 'auth', pathMatch: 'full'},

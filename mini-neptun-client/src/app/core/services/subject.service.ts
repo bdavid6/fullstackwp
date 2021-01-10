@@ -5,6 +5,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { NotificationService } from './notification.service';
 import { Subject } from '../interfaces/subject';
+import { Building } from '../interfaces/building';
+import { trigger } from '@angular/animations';
+import { BuildingService } from './building.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +26,8 @@ export class SubjectService {
 
   constructor(
     private http: HttpClient,
-    private ns: NotificationService
+    private ns: NotificationService,
+    private bs: BuildingService
   ) { }
 
   public getSubjects(): void {
@@ -55,7 +59,9 @@ export class SubjectService {
     this.http.post<Subject>(`${baseUrl}/subjects`, subject ,{headers: header}).subscribe(
       newsubjet => {
         this.subjects$.next(this.subjects$.getValue().concat([newsubjet]));
-        this.ns.show('Tárgy létrehozva');
+        //console.log(newsubjet)
+        var build = {name: newsubjet.building}
+        this.bs.addBuilding(build)
       },
       error => {
         this.ns.show('Nem sikerült létrehozni');
