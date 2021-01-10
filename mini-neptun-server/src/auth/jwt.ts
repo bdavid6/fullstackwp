@@ -1,7 +1,7 @@
 import jsonwebtoken from "jsonwebtoken";
-import {Users} from "../entities/Users";
+import {User} from "../entities/User";
 
-export function generateToken(user: Users) {
+export function generateToken(user: User) {
     const payload = {
         sub: user.id,
         role: user.role,

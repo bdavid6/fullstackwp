@@ -1,6 +1,6 @@
 import { wrap } from "@mikro-orm/core";
 import { Router } from "express";
-import { Users } from "../entities/Users";
+import { User } from "../entities/User";
 import { generateToken } from "../auth/jwt";
 import passwordHash from "password-hash";
 
@@ -8,7 +8,7 @@ export const authRouter = Router();
 
 authRouter
     .use((req, res, next) => {
-        req.userRepository = req.orm.em.getRepository(Users);
+        req.userRepository = req.orm.em.getRepository(User);
         next();
     })
     .post('/register', async (req, res) => {
@@ -19,7 +19,7 @@ authRouter
         if (user) {
             res.sendStatus(409);
         } else {
-            const user = new Users();
+            const user = new User();
             wrap(user).assign(req.body);
             await req.userRepository!.persistAndFlush(user);
             res.send(user);

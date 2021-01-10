@@ -1,6 +1,6 @@
 import { Collection, Entity, ManyToMany, ManyToOne, PrimaryKey, Property } from "@mikro-orm/core";
 import { Building } from "./Building";
-import { Users } from "./Users";
+import { User } from "./User";
 
 @Entity()
 export class Subject {
@@ -20,11 +20,14 @@ export class Subject {
     @Property()
     credit!: number;
 
-    @ManyToMany(() => Users, user => user.subjects)
-    users = new Collection<Users>(this);
+    @Property()
+    room!: string;
 
-    @ManyToOne(() => Building)
-    building!: Building;
+    @ManyToMany(() => User, 'subjects', {owner: true})
+    users = new Collection<User>(this);
+
+    // @ManyToOne(() => Building)
+    // building!: Building;
 
     @Property()
     createdAt = new Date();

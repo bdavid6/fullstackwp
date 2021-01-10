@@ -10,8 +10,8 @@ export class Building {
     @Property()
     name!: string;
 
-    @OneToMany(() => Subject, subject => subject.building)
-    subjects = new Collection<Subject>(this);
+    // @OneToMany(() => Subject, subject => subject.building)
+    // subjects = new Collection<Subject>(this);
 
     @Property()
     createdAt = new Date();

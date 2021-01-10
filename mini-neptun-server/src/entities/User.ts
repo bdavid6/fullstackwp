@@ -2,7 +2,7 @@ import { Collection, Entity, Enum, ManyToMany, PrimaryKey, Property } from "@mik
 import { Subject } from "./Subject";
 
 @Entity()
-export class Users {
+export class User {
 
     @PrimaryKey()
     id!: number;
@@ -25,7 +25,7 @@ export class Users {
     @Property()
     password!: string;
 
-    @ManyToMany(() => Subject, 'users', { owner: true })
+    @ManyToMany(() => Subject, subject => subject.users)
     subjects = new Collection<Subject>(this);
 
     @Property()

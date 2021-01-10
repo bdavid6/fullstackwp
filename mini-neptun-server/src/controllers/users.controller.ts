@@ -1,13 +1,13 @@
 import { wrap } from "@mikro-orm/core";
 import { Router } from "express";
 import { Subject } from "../entities/Subject";
-import { Users } from "../entities/Users";
+import { User } from "../entities/User";
 
 export const usersRouter = Router();
 
 usersRouter
     .use((req, res, next) => {
-        req.userRepository = req.orm.em.getRepository(Users);
+        req.userRepository = req.orm.em.getRepository(User);
         next();
     })
     .get('/', async (req, res) => {

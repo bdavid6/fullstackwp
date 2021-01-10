@@ -57,74 +57,40 @@ export class SubjectService {
     const header = new HttpHeaders().set(
       'Authorization', `Bearer ${localStorage.getItem('token')}`
     );
-    let building: Building | number | string = subject.building;
-    // console.log(building)
-    this.http.post<{ id: number }>(`${baseUrl}/buildings`, { name: building }, { headers: header }).subscribe(
-      data => {
-        console.log(data.id);
-        subject.building = data.id;
-        this.http.post<Subject>(`${baseUrl}/subjects`, subject, { headers: header }).subscribe(
-          newsubjet => {
-            this.subjects$.next(this.subjects$.getValue().concat([newsubjet]));
-            console.log(newsubjet)
-          },
-          error => {
-            this.ns.show('Nem sikerült létrehozni');
-            console.error(error);
-          }
-        )
+    this.http.post<Subject>(`${baseUrl}/subjects`, subject ,{headers: header}).subscribe(
+      newsubjet => {
+        this.subjects$.next(this.subjects$.getValue().concat([newsubjet]));
       },
       error => {
+        this.ns.show('Nem sikerült létrehozni');
         console.error(error);
       }
     )
-    // this.http.post<Subject>(`${baseUrl}/subjects`, subject ,{headers: header}).subscribe(
-    //   newsubjet => {
-    //     this.subjects$.next(this.subjects$.getValue().concat([newsubjet]));
-    //     //console.log(newsubjet)
-    //     var build = {name: newsubjet.building.name}
-    //     this.bs.addBuilding(<Building>build);
-    //   },
-    //   error => {
-    //     this.ns.show('Nem sikerült létrehozni');
-    //     console.error(error);
-    //   }
-    // )
   }
 
   public modifySubject(subject: Subject) {
     const header = new HttpHeaders().set(
       'Authorization', `Bearer ${localStorage.getItem('token')}`
     );
-    let building: Building | number | string = subject.building;
-    // console.log(building)
-    this.http.post<{ id: number }>(`${baseUrl}/buildings`, { name: building }, { headers: header }).subscribe(
-      data => {
-        console.log(data.id);
-        subject.building = data.id;
-        this.http.put<Subject>(`${baseUrl}/subjects/${subject.id}`, subject, { headers: header }).subscribe(
-          () => {
-            // this.subjects$.next(this.subjects$.getValue().concat([newsubjet]));
-            let s: Subject[] = this.subjects$.getValue().map<Subject>(element => {
-              if (element.id === subject.id) {
-                return subject;
-              }
-              return element;
-            });
-            this.subjects$.next(s);
-            this.ns.show('Tárgy módosítva');
-          },
-          error => {
-            this.ns.show('Nem sikerült módosítani');
-            console.error(error);
-            console.log(subject.id)
+    this.http.put<Subject>(`${baseUrl}/subjects/${subject.id}`, subject, { headers: header }).subscribe(
+      () => {
+        // this.subjects$.next(this.subjects$.getValue().concat([newsubjet]));
+        let s: Subject[] = this.subjects$.getValue().map<Subject>(element => {
+          if (element.id === subject.id) {
+            return subject;
           }
-        )
+          return element;
+        });
+        this.subjects$.next(s);
+        this.ns.show('Tárgy módosítva');
       },
       error => {
+        this.ns.show('Nem sikerült módosítani');
         console.error(error);
+        console.log(subject.id)
       }
     )
+
   }
 
   public deleteSubject(id: number) {
