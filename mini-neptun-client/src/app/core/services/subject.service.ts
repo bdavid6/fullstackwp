@@ -9,6 +9,7 @@ import { Building } from '../interfaces/building';
 import { trigger } from '@angular/animations';
 import { BuildingService } from './building.service';
 import { TagContentType } from '@angular/compiler';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,8 @@ export class SubjectService {
   constructor(
     private http: HttpClient,
     private ns: NotificationService,
-    private bs: BuildingService
+    private bs: BuildingService,
+    private router: Router,
   ) { }
 
   public getSubjects(): void {
@@ -49,6 +51,10 @@ export class SubjectService {
     this.http.get<Subject>(`${baseUrl}/subjects/${id}`, { headers: header }).subscribe(
       i => {
         this.subject$.next(i);
+      },
+      error => {
+        console.log(error);
+        this.router.navigate(['/404']);
       }
     )
   }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { SubjectService } from 'src/app/core/services/subject.service';
 
 @Component({
     selector: 'app-subject',
@@ -7,7 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubjectComponent implements OnInit {
 
-    constructor() { }
+    constructor(
+        private route: ActivatedRoute,
+        public ss: SubjectService,
+    ) {
+        route.paramMap.subscribe(params => {
+            const id = parseInt(params.get('id')!);
+            ss.getSubject(id);
+        })
+    }
 
     ngOnInit(): void {
     }

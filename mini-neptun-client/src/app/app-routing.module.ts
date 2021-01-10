@@ -5,6 +5,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { AnonymGuard } from './core/guards/anonym.guard';
 import { AuthGuard } from './core/guards/auth.guard';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { SubjectComponent } from './subjects/subject/subject.component';
 import { SubjectsComponent } from './subjects/subjects.component';
 import { UserComponent } from './user/user.component';
 
@@ -13,6 +14,7 @@ const routes: Routes = [
   //{path: 'buildings', component: BuildingsComponent, canActivate: [AuthGuard]}, NEM FOG MUKODNI A .post /buildings
   {path: 'auth', component: AuthComponent, canActivate: [AnonymGuard]},
   {path: 'subjects', component: SubjectsComponent, canActivate: [AuthGuard]},
+  {path: 'subjects/:id', component: SubjectComponent},
   {path: '', redirectTo: 'auth', pathMatch: 'full'},
   {path: '404', component: PagenotfoundComponent},
   {path: '**', redirectTo: '404', pathMatch: 'full'},

@@ -19,6 +19,8 @@
             {{ subject.credit }}<br>
             <div style="text-align: justify;">{{ subject.description }}</div>
             <mat-action-row>
+                <button mat-button color="basic" routerLink="/subjects/{{subject.id}}"
+                    [disabled]="!(userRole$ | async)">Értékelés</button>
                 <button mat-button color="basic" (click)="openModifySubject(subject.id)"
                     [disabled]="!(userRole$ | async)">Módosítás</button>
                 <button mat-button color="warn" (click)="deleteSubject(subject.id)"

@@ -2,7 +2,7 @@ import { EntityRepository, MikroORM } from "@mikro-orm/core";
 import { Building } from "./entities/Building";
 import { Subject } from "./entities/Subject";
 import { Result } from "./entities/Result";
-import { Users } from "./entities/Users";
+import { Users } from "./entities/User";
 
 declare global {
     namespace Express {
