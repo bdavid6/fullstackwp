@@ -4,6 +4,13 @@
             <mat-icon>menu</mat-icon>
         </button>
         <span>Mini Neptun</span>
+        <button *ngIf="(isLoggedIn$ | async)" mat-icon-button style="margin-left: auto;" [matMenuTriggerFor]="user">
+            <mat-icon>person</mat-icon>
+        </button>
+        <mat-menu #user>
+            <button mat-menu-item (click)="getUser();">Get user</button>
+            <button mat-menu-item (click)="logout();">Kijelentkezés</button>
+        </mat-menu>
     </mat-toolbar>
     <mat-sidenav-container class="content">
         <mat-sidenav #sidenav mode="over">
