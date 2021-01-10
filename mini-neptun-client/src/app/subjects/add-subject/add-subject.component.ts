@@ -31,7 +31,7 @@ export class AddSubjectComponent implements OnInit {
   ) { 
     this.userRole$ = as.getRole();
 
-    bs.getBuildings();
+    // bs.getBuildings();
 
     this.addSubjectForm = this.formBuilder.group({
       name: [null, Validators.required],
@@ -52,6 +52,7 @@ export class AddSubjectComponent implements OnInit {
     } else {
       this.ns.show("Nem sikerült létrehozni")
     }
+    this.ss.getSubjects();
   }
 
 }

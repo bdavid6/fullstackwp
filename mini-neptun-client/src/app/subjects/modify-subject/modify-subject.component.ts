@@ -46,7 +46,6 @@ export class ModifySubjectComponent implements OnInit {
     }
     
     modifySubject(form: FormGroup): void {
-      this.ss.getSubject(this.id)
       let subject = <Subject>form.value;
       subject.id = this.id;
       if(form.valid) {

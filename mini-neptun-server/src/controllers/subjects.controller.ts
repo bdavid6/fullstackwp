@@ -27,9 +27,13 @@ subjectsRouter
     .post('/', async (req, res) => {
         const subject = new Subject();
         wrap(subject).assign(req.body, { em: req.orm.em });
-
+        // console.log(subject.id)
         await req.subjectRepository!.persistAndFlush(subject);
+        const id = subject.id;
+        console.log(id)
+        const populatedSubject = req.subjectRepository!.findOne({id: id});
         res.send(subject);
+        // res.send("Hello");
     })
     .get('/:id/users', async (req, res) => {
         const id = parseInt(req.params.id);

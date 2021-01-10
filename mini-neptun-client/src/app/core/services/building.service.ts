@@ -35,9 +35,9 @@ export class BuildingService {
     const header = new HttpHeaders().set(
       'Authorization', `Bearer ${localStorage.getItem('token')}`
     );
-    this.http.post<Building>(`${baseUrl}/buildings`, building, { headers: header }).subscribe(
+    this.http.post<{id: number}>(`${baseUrl}/buildings`, building, { headers: header }).subscribe(
       data => {
-        //console.log(data)
+        console.log(data)
       },
       error => {
         console.error(error);

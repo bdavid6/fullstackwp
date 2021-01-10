@@ -1,6 +1,6 @@
 <div *ngIf="(userRole$ | async)">
 <h2>Új tárgy meghirdetése</h2>
-<form [formGroup]="addSubjectForm" (ngSubmit)="addSubject(addSubjectForm)" style="margin-top: 15px;">
+<form [formGroup]="addSubjectForm" (ngSubmit)="addSubject(addSubjectForm);" style="margin-top: 15px;">
 
     <mat-form-field appearance="legacy" color="accent">
         <mat-label>Tárgy neve</mat-label>
