@@ -3,7 +3,7 @@ import {Users} from "../entities/Users";
 
 export function generateToken(user: Users) {
     const payload = {
-        id: user.id,
+        sub: user.id,
         role: user.role,
     };
 
