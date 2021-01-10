@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 
-//import { AuthService } from '../core/services/auth.service';
+import { AuthService } from '../core/services/auth.service';
 import { SubjectService } from '../core/services/subject.service';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { ModifySubjectComponent } from './modify-subject/modify-subject.component';
@@ -14,14 +14,14 @@ import { ModifySubjectComponent } from './modify-subject/modify-subject.componen
 })
 export class SubjectsComponent implements OnInit {
 
-  //isLoggedIn$: Observable<boolean>; CSAK AKKOR KELL HA NINCS AUTHGUARD
+  userRole$: Observable<boolean>
 
   constructor(
     public dialog: MatDialog,
     public ss: SubjectService,
-    //private as: AuthService
+    private as: AuthService
   ) { 
-    //this.isLoggedIn$ = as.isLoggedIn();
+    this.userRole$ = as.getRole();
   }
 
   ngOnInit(): void {

@@ -1,3 +1,4 @@
+<div *ngIf="(userRole$ | async)">
 <h2>Tárgy módosítása</h2>
 <form [formGroup]="modifySubjectForm" (ngSubmit)="modifySubject(modifySubjectForm)" style="margin-top: 15px;">
 
@@ -24,3 +25,4 @@
     <button mat-raised-button color="accent" style="float: right;">Módosít</button>
 
 </form>
+</div>

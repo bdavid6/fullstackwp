@@ -15,14 +15,14 @@
         {{ subject.credit }}<br>
         <div style="text-align: justify;">{{ subject.description }}</div>
         <mat-action-row>
-          <button mat-button color="basic" (click)="openModifySubject(subject.id)">Módosítás</button>
-          <button mat-button color="warn" (click)="deleteSubject(subject.id)">Törlés</button>
+          <button *ngIf="(userRole$ | async)" mat-button color="basic" (click)="openModifySubject(subject.id)">Módosítás</button>
+          <button *ngIf="(userRole$ | async)" mat-button color="warn" (click)="deleteSubject(subject.id)">Törlés</button>
         </mat-action-row>
     </mat-expansion-panel>
   </mat-accordion>
 </div>
 
-<button mat-mini-fab color="accent" class="add-button" (click)="openAddSubject()" matTooltip="Új tárgy felvétele">
+<button *ngIf="(userRole$ | async)" mat-mini-fab color="accent" class="add-button" (click)="openAddSubject()" matTooltip="Új tárgy felvétele">
   <mat-icon>add</mat-icon>
 </button>
 <!--</div>-->

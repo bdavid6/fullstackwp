@@ -24,13 +24,22 @@ export class AuthService {
   ) { }
 
   isLogin$ = new BehaviorSubject<boolean>(this.hasToken());
+  userRole$ = new BehaviorSubject<boolean>(this.checkRole());
 
   protected hasToken(): boolean {
     return !!localStorage.getItem('token');
   }
 
+  protected checkRole(): boolean {
+    return !!localStorage.getItem('role');
+  }
+
   isLoggedIn(): Observable<boolean> {
     return this.isLogin$.asObservable();
+  }
+
+  getRole(): Observable<boolean> {
+    return this.userRole$.asObservable();
   }
 
   register(user: User) {
@@ -52,7 +61,12 @@ export class AuthService {
         const tokenPayload = decode<User>(data.token);
 
         localStorage.setItem('token', data.token);
-        localStorage.setItem('role', tokenPayload.role);
+        //ADMIN = true, SUDENT = false
+        if(tokenPayload.role == 'ADMIN') {
+          this.userRole$.next(true);
+        } else {
+          this.userRole$.next(false);
+        }
         this.isLogin$.next(true);
         this.ns.show('Sikeres bejelentkezés');
         this.router.navigate(['/subjects']);
@@ -66,7 +80,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
-    localStorage.removeItem('role');
+    //localStorage.removeItem('role');
     this.isLogin$.next(false);
     this.ns.show('Kijelentkezés sikeres');
     this.router.navigate(['/']);

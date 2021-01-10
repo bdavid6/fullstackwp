@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { Subject } from 'src/app/core/interfaces/subject';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { SubjectService } from 'src/app/core/services/subject.service';
 
@@ -13,12 +15,16 @@ export class ModifySubjectComponent implements OnInit {
 
   private id!: number;
   public modifySubjectForm!: FormGroup;
+  userRole$: Observable<boolean>
 
   constructor(
     public ss: SubjectService,
     private formBuilder: FormBuilder,
     private ns: NotificationService,
+    private as: AuthService
   ) {
+    this.userRole$ = as.getRole();
+    
     this.ss.subject$.subscribe(
       value => {
         this.id = value.id;

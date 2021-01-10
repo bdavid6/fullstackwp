@@ -5,6 +5,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { SubjectService } from 'src/app/core/services/subject.service';
 import { Subject } from 'src/app/core/interfaces/subject';
 import { NotificationService } from 'src/app/core/services/notification.service';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -15,14 +17,18 @@ import { NotificationService } from 'src/app/core/services/notification.service'
 export class AddSubjectComponent implements OnInit {
 
   public addSubjectForm!: FormGroup;
+  userRole$: Observable<boolean>;
   //public addSubjectForm?: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<AddSubjectComponent>,
     public ss: SubjectService,
-    private ns: NotificationService
+    private ns: NotificationService,
+    private as: AuthService
   ) { 
+    this.userRole$ = as.getRole();
+
     this.addSubjectForm = this.formBuilder.group({
       name: [null, Validators.required],
       code: [null, Validators.required],
