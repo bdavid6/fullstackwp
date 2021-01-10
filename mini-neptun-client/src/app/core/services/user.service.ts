@@ -20,7 +20,7 @@ export class UserService {
     const header = new HttpHeaders().set(
       'Authorization', `Bearer ${localStorage.getItem('token')}`
     );
-    this.http.get<User>(`${baseUrl}/user/${id}` ,{headers: header}).subscribe(
+    this.http.get<User>(`${baseUrl}/users/${id}` ,{headers: header}).subscribe(
       user => {
         this.user$.next(user);
       }

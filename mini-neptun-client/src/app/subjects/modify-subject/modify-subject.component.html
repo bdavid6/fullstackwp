@@ -1,28 +1,35 @@
 <div *ngIf="(userRole$ | async)">
-<h2>Tárgy módosítása</h2>
-<form [formGroup]="modifySubjectForm" (ngSubmit)="modifySubject(modifySubjectForm)" style="margin-top: 15px;">
+    <h2>Tárgy módosítása</h2>
+    <form [formGroup]="modifySubjectForm" (ngSubmit)="modifySubject(modifySubjectForm)" style="margin-top: 15px;">
 
-    <mat-form-field appearance="legacy" color="accent">
-        <mat-label>Tárgy neve</mat-label>
-        <input matInput type="text" formControlName="name">
-    </mat-form-field>
+        <mat-form-field appearance="legacy" color="accent">
+            <mat-label>Tárgy neve</mat-label>
+            <input matInput type="text" formControlName="name">
+        </mat-form-field>
 
-    <mat-form-field appearance="legacy" color="accent">
-        <mat-label>Tárgy azonosítója</mat-label>
-        <input matInput type="number" formControlName="code">
-    </mat-form-field>
+        <mat-form-field appearance="legacy" color="accent">
+            <mat-label>Tárgy azonosítója</mat-label>
+            <input matInput type="number" formControlName="code">
+        </mat-form-field>
 
-    <mat-form-field appearance="legacy" color="accent">
-        <mat-label>Tárgy leírása</mat-label>
-        <input matInput type="text" formControlName="description">
-    </mat-form-field>
+        <mat-form-field appearance="legacy" color="accent">
+            <mat-label>Tárgy leírása</mat-label>
+            <input matInput type="text" formControlName="description">
+        </mat-form-field>
 
-    <mat-form-field appearance="legacy" color="accent">
-        <mat-label>Kredit</mat-label>
-        <input matInput type="number" formControlName="credit">
-    </mat-form-field>
+        <mat-form-field appearance="legacy" color="accent">
+            <mat-label>Kredit</mat-label>
+            <input matInput type="number" formControlName="credit">
+        </mat-form-field>
 
-    <button mat-raised-button color="accent" style="float: right;">Módosít</button>
+        <mat-form-field appearance="legacy" color="accent">
+            <mat-label>Épület</mat-label>
+            <mat-select formControlName="building">
+                <mat-option *ngFor="let building of (bs.buildings$ | async)" [value]="building.name">{{building.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
 
-</form>
+        <button mat-raised-button color="accent" style="float: right;">Módosít</button>
+
+    </form>
 </div>

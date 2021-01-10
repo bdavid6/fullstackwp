@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Subject } from 'src/app/core/interfaces/subject';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { BuildingService } from 'src/app/core/services/building.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { SubjectService } from 'src/app/core/services/subject.service';
 
@@ -21,9 +22,11 @@ export class ModifySubjectComponent implements OnInit {
     public ss: SubjectService,
     private formBuilder: FormBuilder,
     private ns: NotificationService,
-    private as: AuthService
+    private as: AuthService,
+    public bs: BuildingService,
   ) {
     this.userRole$ = as.getRole();
+    bs.getBuildings();
     
     this.ss.subject$.subscribe(
       value => {
@@ -33,6 +36,7 @@ export class ModifySubjectComponent implements OnInit {
           code: [value.code, Validators.required],
           description: [value.description, Validators.required],
           credit: [value.credit, Validators.required],
+          building: [value.building, Validators.required],
         });
       }
     )

@@ -4,12 +4,13 @@
             <mat-icon>menu</mat-icon>
         </button>
         <span>Mini Neptun</span>
-        <button *ngIf="(isLoggedIn$ | async)" mat-icon-button style="margin-left: auto;" [matMenuTriggerFor]="user">
+        <button *ngIf="(isLoggedIn$ | async)" mat-button style="margin-left: auto;" [matMenuTriggerFor]="user">
             <mat-icon>person</mat-icon>
+            {{(us.user$ | async)!.name}}
         </button>
         <mat-menu #user>
-            <button mat-menu-item (click)="getUser();">Get user</button>
-            <button mat-menu-item (click)="logout();">Kijelentkezés</button>
+            <button mat-menu-item routerLink="/user" (click)="sidenav.close()">Get user</button>
+            <button mat-menu-item (click)="logout(); sidenav.close()">Kijelentkezés</button>
         </mat-menu>
     </mat-toolbar>
     <mat-sidenav-container class="content">
@@ -20,9 +21,10 @@
                 <mat-list-item *ngIf="(isLoggedIn$ | async)" routerLink="/subjects" (click)="sidenav.toggle(); setTitle('Tárgyak')" disabled>Tárgyaim</mat-list-item>
                 <mat-list-item *ngIf="(isLoggedIn$ | async)" routerLink="/subjects" (click)="sidenav.toggle(); setTitle('Tárgyak')" disabled>Felvett tárgyak</mat-list-item>
                 <mat-list-item *ngIf="(isLoggedIn$ | async)" routerLink="/subjects" (click)="sidenav.toggle(); setTitle('Tárgyak')" disabled>Tárgyfelvétel</mat-list-item>
-                <mat-list-item *ngIf="(isLoggedIn$ | async)" routerLink="/user" (click)="sidenav.toggle(); setTitle('Felhasználó')">Felhasználó</mat-list-item>
+                <mat-list-item (click)="logBuildings()">Épületek</mat-list-item>
+                <!-- <mat-list-item *ngIf="(isLoggedIn$ | async)" routerLink="/user" (click)="sidenav.toggle(); setTitle('Felhasználó')">Felhasználó</mat-list-item> -->
                 <!--<mat-list-item routerLink="/auth" (click)="sidenav.toggle(); setTitle('Bejelentkezés')">Bejelentkezés</mat-list-item>-->
-                <mat-list-item *ngIf="(isLoggedIn$ | async)" color="warn" (click)="logout(); sidenav.toggle() ">Kijelentkezés</mat-list-item>
+                <!-- <mat-list-item *ngIf="(isLoggedIn$ | async)" color="warn" (click)="logout(); sidenav.toggle() ">Kijelentkezés</mat-list-item> -->
             </mat-nav-list>
         </mat-sidenav>
         <mat-sidenav-content>

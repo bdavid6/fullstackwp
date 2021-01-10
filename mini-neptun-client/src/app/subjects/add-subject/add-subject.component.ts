@@ -7,6 +7,7 @@ import { Subject } from 'src/app/core/interfaces/subject';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Observable } from 'rxjs';
+import { BuildingService } from 'src/app/core/services/building.service';
 
 
 @Component({
@@ -25,9 +26,12 @@ export class AddSubjectComponent implements OnInit {
     public dialogRef: MatDialogRef<AddSubjectComponent>,
     public ss: SubjectService,
     private ns: NotificationService,
-    private as: AuthService
+    private as: AuthService,
+    public bs: BuildingService,
   ) { 
     this.userRole$ = as.getRole();
+
+    bs.getBuildings();
 
     this.addSubjectForm = this.formBuilder.group({
       name: [null, Validators.required],

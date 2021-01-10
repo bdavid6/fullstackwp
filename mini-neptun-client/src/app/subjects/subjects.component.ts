@@ -30,7 +30,7 @@ export class SubjectsComponent implements OnInit {
 
   openAddSubject(): void{
 		const dialogRef = this.dialog.open(AddSubjectComponent, {
-      height: '400px',
+      // height: '400px',
       width: '700px',
     });
   }
@@ -38,7 +38,7 @@ export class SubjectsComponent implements OnInit {
   openModifySubject(id: number): void{
     this.ss.getSubject(id);
 		const dialogRef = this.dialog.open(ModifySubjectComponent, {
-      height: '400px',
+      // height: '400px',
       width: '700px',
     });
   }

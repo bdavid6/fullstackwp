@@ -6,6 +6,7 @@ import { Router } from '@angular/router'
 import decode from 'jwt-decode';
 import { User } from './core/interfaces/user';
 import { UserService } from './core/services/user.service';
+import { BuildingService } from './core/services/building.service';
 
 
 @Component({
@@ -22,10 +23,12 @@ export class AppComponent {
         private ts: Title,  // Az dokumentum címét lehet beállítani és lekérdezni ennek segítségével.
         protected as: AuthService,
         public router: Router,
-        private us: UserService,
+        public us: UserService,
+        private bs: BuildingService,
     ) {
         ts.setTitle(this.title);
         this.isLoggedIn$ = as.isLoggedIn();
+        us.getUser(decode<{sub: number}>(localStorage.getItem('token')!).sub);
     }
 
     public setTitle(title: string) {
@@ -36,10 +39,7 @@ export class AppComponent {
         this.as.logout();
     }
 
-    getUser(): void {
-        // this.us.getUser()
-        if(this.as.isLoggedIn()){
-            console.log(decode<{sub: number}>(localStorage.getItem('token')!).sub);
-        }
+    logBuildings(): void {
+        this.bs.getBuildings();
     }
 }
