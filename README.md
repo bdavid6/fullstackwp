@@ -1,4 +1,4 @@
-# mini Neptun
+# mini Neptun       [![Build Status](https://travis-ci.com/bdavid6/fullstackwp.svg?branch=main)](https://travis-ci.com/bdavid6/fullstackwp)
 A neptun egy leegyszerűsített változata, amely a hallgatók információját tárolja, valamint segít a tantárgyak közötti eligazodásban és azok kezelésében.
 
 ## 1. Szerepkörök:
