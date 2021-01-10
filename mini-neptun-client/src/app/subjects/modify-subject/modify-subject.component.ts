@@ -36,23 +36,24 @@ export class ModifySubjectComponent implements OnInit {
           code: [value.code, Validators.required],
           description: [value.description, Validators.required],
           credit: [value.credit, Validators.required],
-          building: [value.building, Validators.required],
+          building: [value.building.name, Validators.required],
         });
       }
-    )
-  }
-
-  ngOnInit(): void {
-  }
-
-  modifySubject(form: FormGroup): void {
-    let subject = <Subject>form.value;
-    subject.id = this.id;
-    if(form.valid) {
-      this.ss.modifySubject(subject);
-    } else {
-      this.ns.show("Nem sikerült módosítani (component)")
-      console.log(subject)
+      )
     }
-  }
+    
+    ngOnInit(): void {
+    }
+    
+    modifySubject(form: FormGroup): void {
+      this.ss.getSubject(this.id)
+      let subject = <Subject>form.value;
+      subject.id = this.id;
+      if(form.valid) {
+        this.ss.modifySubject(subject);
+      } else {
+        this.ns.show("Nem sikerült módosítani (component)")
+        console.log(subject)
+      }
+    }
 }

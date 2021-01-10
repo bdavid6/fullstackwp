@@ -9,16 +9,17 @@ buildingsRouter
         req.buildingRepository = req.orm.em.getRepository(Building);
         next();
     })
-    /*.get('/', async (req, res) => {
+
+    .get('/', async (req, res) => {
         const buildings = await req.buildingRepository!.findAll();
         res.send(buildings);
-    })*/ //NINCS HASZNÁLVA
+    }) //NINCS HASZNÁLVA
 
     .post('/', async (req, res) => {
         const name: string = req.body.name;
         const building = await req.buildingRepository!.findOne({ name });
         if (building) {
-            res.sendStatus(409);
+            res.status(200).send({id: building.id});
         } else {
             const building = new Building();
             wrap(building).assign(req.body);

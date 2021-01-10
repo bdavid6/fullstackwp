@@ -26,6 +26,7 @@ export class SubjectsComponent implements OnInit {
 
   ngOnInit(): void {
     this.ss.getSubjects();
+    this.ss.getSubject(this.ss.subjects$.getValue()[0].id);
   }
 
   openAddSubject(): void{
