@@ -9,7 +9,7 @@
             {{(us.user$ | async)!.name}}
         </button>
         <mat-menu #user>
-            <button mat-menu-item routerLink="/user" (click)="sidenav.close()">Get user</button>
+            <button mat-menu-item routerLink="/user" (click)="sidenav.close()">Fiók</button>
             <button mat-menu-item (click)="logout(); sidenav.close()">Kijelentkezés</button>
         </mat-menu>
     </mat-toolbar>

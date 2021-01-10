@@ -38,7 +38,7 @@ export class AddSubjectComponent implements OnInit {
       code: [null, Validators.required],
       description: [null, Validators.required],
       credit: [null, Validators.required],
-      building: [null, Validators.required],
+      room: [null, Validators.required],
     });
   }
 
