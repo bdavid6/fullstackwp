@@ -50,7 +50,7 @@ usersRouter
     //     await req.userRepository!.persistAndFlush(user);
     //     res.send(user);
     // })
-    .post('/:id/subjects', async (req, res) => {    // Ezt használjuk tárgyfelvételnél!!!!
+    .post('/:id/subjects', async (req, res) => {    // nem ezt használjuk tárgyfelvételnél!!!!
         const id = parseInt(req.params.id);
         const user = await req.userRepository!.findOne({ id }, []);
         if (user){

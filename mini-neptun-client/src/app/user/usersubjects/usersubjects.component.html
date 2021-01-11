@@ -1,27 +1,25 @@
 <!--<div *ngIf="(isLoggedIn$ | async)">-->
-    <div class="accordion-wrapper">
-        <!-- <mat-accordion multi> -->
-        <mat-accordion>
-            <mat-expansion-panel *ngFor="let subject of (us.subjects$ | async)">
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        #{{ subject.name }}
-                    </mat-panel-title>
-                    <mat-panel-description>
-                        {{ subject.description.length > 20 ? subject.description.slice(0, 20) + "..." : subject.description
-                        }}
-                    </mat-panel-description>
-                    <mat-panel-description>
-                        {{ subject.room }}
-                    </mat-panel-description>
-                </mat-expansion-panel-header>
-                {{ subject.code }}<br>
-                {{ subject.credit }}<br>
-                <div style="text-align: justify;">{{ subject.description }}</div>
-                <mat-action-row>
-                    <!--<button mat-button color="warn" (click)="deleteSubject(subject.id)">Törlés</button>-->
-                    <button mat-button color="warn" (click)="deleteSubject(subject.id)">Leadás</button>
-                </mat-action-row>
-            </mat-expansion-panel>
-        </mat-accordion>
-    </div>
+<div class="accordion-wrapper">
+    <!-- <mat-accordion multi> -->
+    <h1>Felvett tárgyak</h1>
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let subject of (us.subjects$ | async)">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    #{{ subject.name }}
+                </mat-panel-title>
+                <mat-panel-description class="grid-container">
+                    <div>{{ subject.description.length > 20 ? subject.description.slice(0, 20) + "..." : subject.description}}</div>
+                    <div>{{ subject.room }}</div>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            {{ subject.code }}<br>
+            {{ subject.credit }}<br>
+            <div style="text-align: justify;">{{ subject.description }}</div>
+            <mat-action-row>
+                <!--<button mat-button color="warn" (click)="deleteSubject(subject.id)">Törlés</button>-->
+                <button mat-button color="warn" (click)="deleteSubject(subject.id)">Leadás</button>
+            </mat-action-row>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

@@ -35,6 +35,7 @@ export class SubjectComponent implements OnInit {
     }
 
     openRating(): void {
+        // console.log("result id: " + rid);
         const dialogRef = this.dialog.open(RatingComponent, {
             // height: '400px',
             width: '200px',

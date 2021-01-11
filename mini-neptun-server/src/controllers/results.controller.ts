@@ -19,8 +19,13 @@ resultsRouter
         //const result = await req.resultRepository!.findOne({ subject_id });
         const result = new Result();
         wrap(result).assign(req.body, { em: req.orm.em });
-        await req.resultRepository!.persistAndFlush(result);
-        res.send(result);
+        const result2 = await req.resultRepository!.findOne({uid: result.uid, sid: result.sid});
+        if(!result2){
+            await req.resultRepository!.persistAndFlush(result);
+            res.send(result);
+        } else {
+            res.sendStatus(409);
+        }
     })
 
     .get('/:id', async (req, res) => {
@@ -33,9 +38,9 @@ resultsRouter
         }
     })
 
-    .get('/user/:id', async (req, res) => {
+    .get('/users/:id', async (req, res) => {
         const id = parseInt(req.params.id);
-        const result = await req.resultRepository!.find({ uid: id }, ['sid']);
+        const result = await req.resultRepository!.find({ uid: id, mark: {$gt: 0} }, ['sid']);
         console.log(result);
         if (result){
             res.send(result);
@@ -56,7 +61,7 @@ resultsRouter
 
     .put('/:id', async (req, res) => {
         const id = parseInt(req.params.id);
-        const result = await req.resultRepository!.findOne({ id }, ['subject']);
+        const result = await req.resultRepository!.findOne({ id });
         if (result){
             wrap(result).assign(req.body, { em: req.orm.em });
             await req.resultRepository!.persistAndFlush(result);

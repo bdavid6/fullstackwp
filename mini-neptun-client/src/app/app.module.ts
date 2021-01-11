@@ -40,6 +40,7 @@ import { RatingComponent } from './rating/rating.component';
 import { UsersubjectsComponent } from './user/usersubjects/usersubjects.component';
 import { BuildingsComponent } from './buildings/buildings.component';
 import { AddBuildingComponent } from './buildings/add-building/add-building.component';
+import { RatingsComponent } from './ratings/ratings.component';
 
 
 
@@ -61,6 +62,7 @@ import { AddBuildingComponent } from './buildings/add-building/add-building.comp
     RatingComponent,
     BuildingsComponent,
     AddBuildingComponent,
+    RatingsComponent,
   ],
   imports: [
     BrowserModule,

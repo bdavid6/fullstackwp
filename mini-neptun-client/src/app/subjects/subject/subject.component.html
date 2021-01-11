@@ -30,7 +30,7 @@
                 <th>Név</th><th colspan="2">Jegy</th>
             </tr>
             <tr *ngFor="let i of (rs.results$ | async)">
-                <td>{{i.uid.name}}</td><td>{{i.mark}}</td><td><button mat-icon-button (click)="openRating()"><mat-icon>edit</mat-icon></button></td>
+                <td>{{i.uid.name}}</td><td>{{i.mark}}</td><td><button mat-icon-button (click)="openRating(); rs.rid.next(i.id)"><mat-icon>edit</mat-icon></button></td>
             </tr>
         </table>
     </mat-card-content>

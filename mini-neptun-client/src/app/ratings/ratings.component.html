@@ -1,0 +1,17 @@
+<div class="wrapper">
+    <h1>Eredmények</h1>
+    <mat-card>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Név</th>
+                <th>Jegy</th>
+            </tr>
+            <tr *ngFor="let result of (rs.results$ | async)">
+                <td>{{result.sid.id}}</td>
+                <td>{{result.sid.name}}</td>
+                <td>{{result.mark}}</td>
+            </tr>
+        </table>
+    </mat-card>
+</div>

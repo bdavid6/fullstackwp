@@ -10,7 +10,8 @@ import { NotificationService } from './notification.service';
 })
 export class ResultService {
 
-  public results$ = new BehaviorSubject<Result[]>([])
+  public results$ = new BehaviorSubject<Result[]>([]);
+  public rid = new BehaviorSubject<number>(0);
 
   constructor(
     private http: HttpClient,
@@ -45,6 +46,20 @@ export class ResultService {
     )
   }
 
+  public setResult(id: number, mark: number): void {
+    const header = new HttpHeaders().set(
+      'Authorization', `Bearer ${localStorage.getItem('token')}`
+    );
+    this.http.put(`${baseUrl}/results/${id}`, {mark: mark}, { headers: header }).subscribe(
+      i => {
+        // this.ns.show("Sikeres tárgyfelvétel!");
+      },
+      error => {
+        // this.ns.show("Sikertelen tárgyfelvétel!");
+      }
+    )
+  }
+
   public getSubjectResults(sid: number): void {
     const header = new HttpHeaders().set(
       'Authorization', `Bearer ${localStorage.getItem('token')}`
@@ -58,7 +73,18 @@ export class ResultService {
     )
   }
 
-  deleteResult(uid: number, sid: number): void {
+  public getUserResults(uid: number): void {
+    const header = new HttpHeaders().set(
+      'Authorization', `Bearer ${localStorage.getItem('token')}`
+    );
+    this.http.get<Result[]>(`${baseUrl}/results/users/${uid}`, { headers: header }).subscribe(
+      i => {
+        this.results$.next(i);
+      }
+    )
+  }
+
+  public deleteResult(uid: number, sid: number): void {
     const header = new HttpHeaders().set(
       'Authorization', `Bearer ${localStorage.getItem('token')}`
     );

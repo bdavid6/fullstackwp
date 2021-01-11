@@ -1,10 +1,10 @@
 <!-- <div *ngIf="(userRole$ | async)"> -->
     <h2>Értékelés</h2>
-    <form [formGroup]="rateForm" (ngSubmit)="rate();" style="margin-top: 15px;">
+    <form [formGroup]="rateForm" (ngSubmit)="rate(rateForm);" style="margin-top: 15px;">
 
         <mat-form-field appearance="legacy" color="accent">
             <mat-label>Jegy</mat-label>
-            <input matInput type="number" formControlName="result">
+            <input matInput type="number" formControlName="mark">
         </mat-form-field>
 
         <button mat-raised-button color="accent" style="float: right;">Értékel</button>
