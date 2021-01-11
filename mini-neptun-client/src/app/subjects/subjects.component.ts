@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 
 import { AuthService } from '../core/services/auth.service';
 import { BuildingService } from '../core/services/building.service';
+import { ResultService } from '../core/services/result.service';
 import { SubjectService } from '../core/services/subject.service';
+import { UserService } from '../core/services/user.service';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { ModifySubjectComponent } from './modify-subject/modify-subject.component';
 
@@ -20,6 +22,8 @@ export class SubjectsComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public ss: SubjectService,
+    private us: UserService,
+    private rs: ResultService,
     private as: AuthService,
     private bs: BuildingService,
   ) { 
@@ -52,6 +56,14 @@ export class SubjectsComponent implements OnInit {
   
   deleteSubject(id: number): void {
     this.ss.deleteSubject(id);
+  }
+
+  signUpToSubject(sid: number): void {
+    this.us.user$.subscribe(user => {
+      console.log("tárgy id: " + sid);
+      console.log("user id: " + user.id);
+      this.rs.addResult(user.id, sid, 0);
+    })
   }
 
 }

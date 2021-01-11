@@ -45,6 +45,7 @@ export class UserService {
     this.http.get<Subject[]>(`${baseUrl}/users/${id}/subjects` ,{headers: header}).subscribe(
       i => {
         this.subjects$.next(i);
+        console.log(i);
       }
     )
   }

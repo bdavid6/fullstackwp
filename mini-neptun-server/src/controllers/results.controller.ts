@@ -79,6 +79,17 @@ resultsRouter
         }
     })
 
+    .delete('/:sid/:uid', async (req, res) => {
+        const uid = parseInt(req.params.uid);
+        const sid = parseInt(req.params.sid);
+        const result = await req.resultRepository!.nativeDelete({ sid: sid, uid: uid });
+        if (result){
+            res.sendStatus(200);
+        } else {
+            res.sendStatus(404);
+        }
+    })
+
     .delete('/:id', async (req, res) => {
         const id = parseInt(req.params.id);
         const result = await req.resultRepository!.nativeDelete({ id });
