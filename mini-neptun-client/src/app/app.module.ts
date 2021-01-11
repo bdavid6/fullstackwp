@@ -15,9 +15,9 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { AnonymGuard } from './core/guards/anonym.guard';
 import { SubjectsComponent } from './subjects/subjects.component';
-  import { SubjectComponent } from './subjects/subject/subject.component';
-  import { AddSubjectComponent } from './subjects/add-subject/add-subject.component';
-  import { ModifySubjectComponent } from './subjects/modify-subject/modify-subject.component';
+import { SubjectComponent } from './subjects/subject/subject.component';
+import { AddSubjectComponent } from './subjects/add-subject/add-subject.component';
+import { ModifySubjectComponent } from './subjects/modify-subject/modify-subject.component';
 
 // Angular Material
 import { MatCardModule } from '@angular/material/card';
@@ -37,6 +37,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { RatingComponent } from './rating/rating.component';
+import { UsersubjectsComponent } from './user/usersubjects/usersubjects.component';
 
 
 
@@ -45,15 +46,16 @@ import { RatingComponent } from './rating/rating.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
     UserComponent,
+      UsersubjectsComponent,
     AuthComponent,
+      LoginComponent,
+      RegisterComponent,
     SubjectsComponent,
       SubjectComponent,
       AddSubjectComponent,
+      ModifySubjectComponent,
     PagenotfoundComponent,
-    ModifySubjectComponent,
     RatingComponent,
   ],
   imports: [

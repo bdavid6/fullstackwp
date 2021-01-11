@@ -8,9 +8,11 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { SubjectComponent } from './subjects/subject/subject.component';
 import { SubjectsComponent } from './subjects/subjects.component';
 import { UserComponent } from './user/user.component';
+import { UsersubjectsComponent } from './user/usersubjects/usersubjects.component';
 
 const routes: Routes = [
   {path: 'user', component: UserComponent, canActivate: [AuthGuard]},
+  {path: 'user/subjects', component: UsersubjectsComponent, canActivate: [AuthGuard]}, //TODO: GUARD BEÁLLÍTÁSA, HOGY ADMIN NE TUDJA MEGNYITNI
   //{path: 'buildings', component: BuildingsComponent, canActivate: [AuthGuard]}, NEM FOG MUKODNI A .post /buildings
   {path: 'auth', component: AuthComponent, canActivate: [AnonymGuard]},
   {path: 'subjects', component: SubjectsComponent, canActivate: [AuthGuard]},

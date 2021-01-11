@@ -19,6 +19,7 @@ export class AppComponent {
     title = 'Neptun';
 
     isLoggedIn$: Observable<boolean>;
+    userRole$: Observable<boolean>;
 
     constructor(
         private ts: Title,  // Az dokumentum címét lehet beállítani és lekérdezni ennek segítségével.
@@ -30,6 +31,7 @@ export class AppComponent {
     ) {
         ts.setTitle(this.title);
         this.isLoggedIn$ = as.isLoggedIn();
+        this.userRole$ = as.getRole();
         us.getUser(decode<{sub: number}>(localStorage.getItem('token')!).sub);
     }
 
