@@ -18,8 +18,10 @@ export class UserService {
   constructor(
     private http: HttpClient,
   ) {
-    this.getUser(decode<{sub: number}>(localStorage.getItem('token')!).sub);
-    this.getUserSubjects(decode<{sub: number}>(localStorage.getItem('token')!).sub);
+    if(localStorage.getItem('token')) {
+      this.getUser(decode<{sub: number}>(localStorage.getItem('token')!).sub);
+      this.getUserSubjects(decode<{sub: number}>(localStorage.getItem('token')!).sub);
+   }
     this.user$.subscribe(v => {
       console.log(v)
     })
