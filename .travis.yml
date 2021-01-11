@@ -19,4 +19,3 @@ jobs:
         secure: "cR8UNm6IvuuC7J/oISutATmMNvq7EKGB3CmeE8+Afx+9MZfuZwnCUYv0MYIbat/lB+0OaYpaPV7rLAm7lRdo5uzl3/vCBviy59ZPKDVWp/zHl1zsbQmSoYdc+6YDV956pUMG0yRb/jl66DzmRcBTcIyYxOw0Y4tzRKqEUK6KdiW+EGAQ3zOKCLgErECOCbBh0+MbASxz12ENWNRcN8/VGLncJ3nB21Q0LXAxHAFa66mn0HwzMDNDnVBS1CjNi5UW10iICHtAyEjlExnx+OsTW65Qaa17ME+5YTv9IIRcsXR+MlHa4Ngr0FzY5Q1PIj6Teq9PH2ufcvSqMXmUOg6UrlX+4Q+xwP8M3ILNZ45elk7czAvZrtT3rhivlEKh36e9yBWd8HGAxZgIQzifd5xEumnaJTm+RwGra5bFxkgYaGWS+hn33A3INMZOHGgUcYW1SGif7LRlX2RtNwG4zrne+6jdRNEDGVcCFY2HK+7D3jwlR2Y08r0GSJ7+4g8nD/vqH77/dvK59/s0W6trsSJmr1krCykY/tA9wansmlVmeoYl2hX1NA5Vyo+tgBQvBwVjZN6WHI2FpEuynhclG3ytwADRUkkzx8fWryONsOVjO4+SHjgdWNwBmE5Lh1uk+udbHsd9yUi8gTv0TnQxxWGBk4obFA2Bvsmst8cwE3RHTvM="
       app: mini-neptun-server
       on: main
-      repo: bdavid6/fullstackwp

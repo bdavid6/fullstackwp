@@ -32,7 +32,9 @@ export class AppComponent {
         ts.setTitle(this.title);
         this.isLoggedIn$ = as.isLoggedIn();
         this.userRole$ = as.getRole();
-        us.getUser(decode<{sub: number}>(localStorage.getItem('token')!).sub);
+        if(localStorage.getItem('token')) {
+            us.getUser(decode<{sub: number}>(localStorage.getItem('token')!).sub);
+        }
     }
 
     public setTitle(title: string) {
