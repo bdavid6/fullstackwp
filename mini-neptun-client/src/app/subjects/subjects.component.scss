@@ -21,3 +21,15 @@
 div.expansion-panel-wrapper {
     margin: 10px auto 10px auto;
 }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-content: start;
+    align-content: space-between;
+}
+
+.card-title {
+    width: 33%;
+    max-width: 33%;
+}

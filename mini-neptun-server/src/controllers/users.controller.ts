@@ -13,12 +13,12 @@ usersRouter
         next();
     })
     .get('/', async (req, res) => {
-        const users = await req.userRepository!.findAll(['subjects', 'results']);
+        const users = await req.userRepository!.findAll(['results']);
         res.send(users);
     })
     .get('/:id', async (req, res) => {
         const id = parseInt(req.params.id);
-        const user = await req.userRepository!.findOne({ id }, ['subjects']);
+        const user = await req.userRepository!.findOne({ id }, []);
         if (user) {
             res.send(user);
         } else {
@@ -27,7 +27,7 @@ usersRouter
     })
     .get('/:id/subjects', async (req, res) => {
         const id = parseInt(req.params.id);
-        const user = await req.userRepository!.findOne({ id }, ['subjects']);
+        const user = await req.userRepository!.findOne({ id }, []);
         if (user) {
             res.send(user.subjects);
         } else {
@@ -51,7 +51,7 @@ usersRouter
     // })
     .post('/:id/subjects', async (req, res) => {    // Ezt használjuk tárgyfelvételnél!!!!
         const id = parseInt(req.params.id);
-        const user = await req.userRepository!.findOne({ id }, ['subjects']);
+        const user = await req.userRepository!.findOne({ id }, []);
         if (user){
             const subject = req.orm.em.getReference(Subject, req.body.subject);
             if (subject){
@@ -71,7 +71,7 @@ usersRouter
     })
     .put('/:id', async (req, res) => {
         const id = parseInt(req.params.id);
-        const user = await req.userRepository!.findOne({ id }, ['subjects']);
+        const user = await req.userRepository!.findOne({ id }, []);
         if (user){
             wrap(user).assign(req.body, { em: req.orm.em });
             await req.userRepository!.persistAndFlush(user);

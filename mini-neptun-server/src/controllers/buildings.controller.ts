@@ -28,3 +28,13 @@ buildingsRouter
             res.status(200).send({id: building.id});
         }
     })
+
+    .delete('/:id', async (req, res) => {
+        const id = parseInt(req.params.id);
+        const building = await req.buildingRepository!.nativeDelete({ id });
+        if (building){
+            res.sendStatus(200);
+        } else {
+            res.sendStatus(404);
+        }
+    })

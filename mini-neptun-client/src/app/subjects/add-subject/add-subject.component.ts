@@ -39,6 +39,7 @@ export class AddSubjectComponent implements OnInit {
       description: [null, Validators.required],
       credit: [null, Validators.required],
       room: [null, Validators.required],
+      building: [null, Validators.required],
     });
   }
 
@@ -49,6 +50,7 @@ export class AddSubjectComponent implements OnInit {
     if(form.valid) {
       this.ss.addSubject(<Subject>form.value);
       this.addSubjectForm.reset();
+      this.dialogRef.close();
     } else {
       this.ns.show("Nem sikerült létrehozni")
     }

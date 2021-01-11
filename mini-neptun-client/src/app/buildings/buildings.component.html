@@ -1,0 +1,23 @@
+<div class="wrapper">
+    <h1>Épületek</h1>
+    <mat-card>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th colspan="2">Név</th>
+            </tr>
+            <tr *ngFor="let building of (bs.buildings$ | async)">
+                <td>{{building.id}}</td>
+                <td>{{building.name}}</td>
+                <td>
+                    <button mat-icon-button (click)="deleteBuilding(building.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </mat-card>
+</div>
+<button mat-mini-fab color="accent" class="add-button" (click)="(openAddBuilding())" matTooltip="Új tárgy felvétele">
+    <mat-icon>add</mat-icon>
+</button>

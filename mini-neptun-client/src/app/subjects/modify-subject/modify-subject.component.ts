@@ -39,6 +39,7 @@ export class ModifySubjectComponent implements OnInit {
           description: [value.description, Validators.required],
           credit: [value.credit, Validators.required],
           room: [value.room, Validators.required],
+          building: [value.building, Validators.required],
         });
       }
     )

@@ -13,12 +13,12 @@ subjectsRouter
         next();
     })
     .get('/', async (req, res) => {
-        const subjects = await req.subjectRepository!.findAll(['users', 'results']);
+        const subjects = await req.subjectRepository!.findAll(['results', 'building']);
         res.send(subjects);
     })
     .get('/:id', async (req, res) => {
         const id = parseInt(req.params.id);
-        const subject = await req.subjectRepository!.findOne({ id }, ['users', 'users.results']);
+        const subject = await req.subjectRepository!.findOne({ id }, []);
         if (subject){
             res.send(subject);
         } else {
@@ -39,7 +39,7 @@ subjectsRouter
     .get('/:id/users', async (req, res) => {
         const id = parseInt(req.params.id);
         // const subject = await req.subjectRepository!.findOne({ id }, ['users']);
-        const subject = await req.entityManager!.findOne(Subject, {id: id}, ['users.results']);
+        const subject = await req.entityManager!.findOne(Subject, {id: id}, []);
         // console.log(subject?.users)
         if (subject){
             res.send(subject.results);
@@ -58,7 +58,7 @@ subjectsRouter
     })
     .put('/:id', async (req, res) => {
         const id = parseInt(req.params.id);
-        const subject = await req.subjectRepository!.findOne({ id }, ['users']);
+        const subject = await req.subjectRepository!.findOne({ id }, []);
         if (subject){
             wrap(subject).assign(req.body, { em: req.orm.em });
             await req.subjectRepository!.persistAndFlush(subject);

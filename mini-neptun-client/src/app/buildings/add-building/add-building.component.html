@@ -1,0 +1,11 @@
+<h2>Új épület hozzáadása</h2>
+<form [formGroup]="addBuildingForm" (ngSubmit)="addBuilding(addBuildingForm);" style="margin-top: 15px;">
+
+    <mat-form-field appearance="legacy" color="accent">
+        <mat-label>Név</mat-label>
+        <input matInput type="text" formControlName="name">
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" style="float: right;">Hozzáad</button>
+
+</form>

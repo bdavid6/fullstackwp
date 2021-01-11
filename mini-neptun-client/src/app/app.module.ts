@@ -38,6 +38,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { RatingComponent } from './rating/rating.component';
 import { UsersubjectsComponent } from './user/usersubjects/usersubjects.component';
+import { BuildingsComponent } from './buildings/buildings.component';
+import { AddBuildingComponent } from './buildings/add-building/add-building.component';
 
 
 
@@ -57,6 +59,8 @@ import { UsersubjectsComponent } from './user/usersubjects/usersubjects.componen
       ModifySubjectComponent,
     PagenotfoundComponent,
     RatingComponent,
+    BuildingsComponent,
+    AddBuildingComponent,
   ],
   imports: [
     BrowserModule,

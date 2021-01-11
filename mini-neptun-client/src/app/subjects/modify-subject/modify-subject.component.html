@@ -27,6 +27,15 @@
             <input matInput type="text" formControlName="room">
         </mat-form-field>
 
+        <mat-form-field appearance="legacy" color="accent">
+            <mat-label>Épület</mat-label>
+            <mat-select formControlName="building">
+                <mat-option *ngFor="let building of (bs.buildings$ | async)" [value]="building.id">
+                    {{building.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
         <button mat-raised-button color="accent" style="float: right;">Módosít</button>
 
     </form>
