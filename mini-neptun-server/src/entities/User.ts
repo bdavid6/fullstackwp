@@ -1,4 +1,5 @@
-import { Collection, Entity, Enum, ManyToMany, PrimaryKey, Property } from "@mikro-orm/core";
+import { Collection, Entity, Enum, ManyToMany, OneToMany, PrimaryKey, Property } from "@mikro-orm/core";
+import { Result } from "./Result";
 import { Subject } from "./Subject";
 
 @Entity()
@@ -27,6 +28,9 @@ export class User {
 
     @ManyToMany(() => Subject, subject => subject.users)
     subjects = new Collection<Subject>(this);
+
+    @OneToMany(() => Result, result => result.uid)
+    results = new Collection<Result>(this);
 
     @Property()
     createdAt = new Date();

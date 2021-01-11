@@ -25,10 +25,10 @@
         <mat-card-title>Értékelés</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <mat-action-list>
+        <mat-list>
             <div style="width: 100%; margin: 15px;">Név<span style="float: right;">Jegy</span></div>
             <mat-divider></mat-divider>
-            <mat-list-item *ngFor="let i of [0,1,2,3,4,5,6,7,8,9,10]">Tanuló {{i}}<span style="margin-left: auto;">jegy</span></mat-list-item>
-        </mat-action-list>
+            <mat-list-item *ngFor="let i of [0,1,2,3,4,5,6,7,8,9,10]" >Tanuló {{i}}<button mat-button style="margin-left: auto;" (click)="openRating()">Értékel</button></mat-list-item>
+        </mat-list>
     </mat-card-content>
 </mat-card>

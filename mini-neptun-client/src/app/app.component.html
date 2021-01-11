@@ -21,6 +21,7 @@
                 <mat-list-item *ngIf="(isLoggedIn$ | async)" routerLink="/subjects" (click)="sidenav.toggle(); setTitle('Tárgyak')" disabled>Tárgyaim</mat-list-item>
                 <mat-list-item *ngIf="(isLoggedIn$ | async)" routerLink="/subjects" (click)="sidenav.toggle(); setTitle('Tárgyak')" disabled>Felvett tárgyak</mat-list-item>
                 <mat-list-item *ngIf="(isLoggedIn$ | async)" routerLink="/subjects" (click)="sidenav.toggle(); setTitle('Tárgyak')" disabled>Tárgyfelvétel</mat-list-item>
+                <mat-list-item (click)="sidenav.toggle(); logResults();">Eredmények</mat-list-item>
                 <!-- <mat-list-item *ngIf="(isLoggedIn$ | async)" routerLink="/user" (click)="sidenav.toggle(); setTitle('Felhasználó')">Felhasználó</mat-list-item> -->
                 <!--<mat-list-item routerLink="/auth" (click)="sidenav.toggle(); setTitle('Bejelentkezés')">Bejelentkezés</mat-list-item>-->
                 <!-- <mat-list-item *ngIf="(isLoggedIn$ | async)" color="warn" (click)="logout(); sidenav.toggle() ">Kijelentkezés</mat-list-item> -->

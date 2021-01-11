@@ -10,15 +10,13 @@ subjectsRouter
         next();
     })
     .get('/', async (req, res) => {
-        const subjects = await req.subjectRepository!.findAll(['users']);
+        const subjects = await req.subjectRepository!.findAll(['users', 'results']);
         res.send(subjects);
     })
     .get('/:id', async (req, res) => {
         const id = parseInt(req.params.id);
         const subject = await req.subjectRepository!.findOne({ id }, ['users']);
         if (subject){
-            wrap(subject).assign(req.body, { em: req.orm.em });
-            await req.subjectRepository!.persistAndFlush(subject);
             res.send(subject);
         } else {
             res.sendStatus(404);
@@ -39,9 +37,16 @@ subjectsRouter
         const id = parseInt(req.params.id);
         const subject = await req.subjectRepository!.findOne({ id }, ['users']);
         if (subject){
-            wrap(subject).assign(req.body, { em: req.orm.em });
-            await req.subjectRepository!.persistAndFlush(subject);
             res.send(subject.users);
+        } else {
+            res.sendStatus(404);
+        }
+    })
+    .get('/:id/results', async (req, res) => {
+        const id = parseInt(req.params.id);
+        const subject = await req.subjectRepository!.findOne({ id }, ['results']);
+        if (subject){
+            res.send(subject.results);
         } else {
             res.sendStatus(404);
         }

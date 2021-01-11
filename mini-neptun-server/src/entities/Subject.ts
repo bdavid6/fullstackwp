@@ -1,5 +1,6 @@
-import { Collection, Entity, ManyToMany, ManyToOne, PrimaryKey, Property } from "@mikro-orm/core";
+import { Collection, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryKey, Property } from "@mikro-orm/core";
 import { Building } from "./Building";
+import { Result } from "./Result";
 import { User } from "./User";
 
 @Entity()
@@ -22,6 +23,9 @@ export class Subject {
 
     @Property()
     room!: string;
+
+    @OneToMany(() => Result, result => result.sid)
+    results = new Collection<Result>(this);
 
     @ManyToMany(() => User, 'subjects', {owner: true})
     users = new Collection<User>(this);

@@ -11,7 +11,7 @@ usersRouter
         next();
     })
     .get('/', async (req, res) => {
-        const users = await req.userRepository!.findAll(['subjects']);
+        const users = await req.userRepository!.findAll(['subjects', 'results']);
         res.send(users);
     })
     .get('/:id', async (req, res) => {
@@ -28,6 +28,15 @@ usersRouter
         const user = await req.userRepository!.findOne({ id }, ['subjects']);
         if (user) {
             res.send(user.subjects);
+        } else {
+            res.sendStatus(404);
+        }
+    })
+    .get('/:id/results', async (req, res) => {
+        const id = parseInt(req.params.id);
+        const user = await req.userRepository!.findOne({ id }, ['results']);
+        if (user) {
+            res.send(user.results);
         } else {
             res.sendStatus(404);
         }

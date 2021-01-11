@@ -1,5 +1,6 @@
-import { Entity, OneToOne, PrimaryKey, Property } from "@mikro-orm/core";
+import { Entity, ManyToOne, OneToOne, PrimaryKey, Property } from "@mikro-orm/core";
 import { Subject } from "./Subject";
+import { User } from "./User";
 
 @Entity()
 export class Result {
@@ -10,9 +11,11 @@ export class Result {
     @Property()
     mark!: number;
 
-    @OneToOne(() => Subject)
-    //@JoinColumn()
-    subject!: Subject;
+    @ManyToOne(() => Subject)
+    sid!: Subject;
+
+    @ManyToOne(() => User)
+    uid!: User;
 
     @Property()
     createdAt = new Date();

@@ -36,6 +36,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { RatingComponent } from './rating/rating.component';
 
 
 
@@ -53,6 +54,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
       AddSubjectComponent,
     PagenotfoundComponent,
     ModifySubjectComponent,
+    RatingComponent,
   ],
   imports: [
     BrowserModule,

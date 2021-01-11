@@ -7,6 +7,7 @@ import decode from 'jwt-decode';
 import { User } from './core/interfaces/user';
 import { UserService } from './core/services/user.service';
 import { BuildingService } from './core/services/building.service';
+import { ResultService } from './core/services/result.service';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class AppComponent {
         public router: Router,
         public us: UserService,
         private bs: BuildingService,
+        private rs: ResultService,
     ) {
         ts.setTitle(this.title);
         this.isLoggedIn$ = as.isLoggedIn();
@@ -37,5 +39,9 @@ export class AppComponent {
 
     logout(): void {
         this.as.logout();
+    }
+
+    logResults(): void {
+        this.rs.getResults();
     }
 }
