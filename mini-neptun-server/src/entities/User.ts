@@ -26,8 +26,8 @@ export class User {
     @Property()
     password!: string;
 
-    @ManyToMany(() => Subject, subject => subject.users)
-    subjects = new Collection<Subject>(this);
+    // @ManyToMany(() => Subject, subject => subject.users)
+    // subjects = new Collection<Subject>(this);
 
     @OneToMany(() => Result, result => result.uid)
     results = new Collection<Result>(this);

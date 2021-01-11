@@ -5,7 +5,7 @@
         <mat-expansion-panel *ngFor="let subject of (ss.subjects$ | async)">
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    #{{ subject.name }}
+                    {{ subject.name }}#{{subject.id}}
                 </mat-panel-title>
                 <mat-panel-description>
                     {{ subject.description.length > 20 ? subject.description.slice(0, 20) + "..." : subject.description

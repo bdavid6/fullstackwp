@@ -26,7 +26,6 @@ export class ModifySubjectComponent implements OnInit {
     private ns: NotificationService,
     private as: AuthService,
     public bs: BuildingService,
-    public dialog: MatDialog,
   ) {
     this.userRole$ = as.getRole();
     bs.getBuildings();
@@ -57,13 +56,6 @@ export class ModifySubjectComponent implements OnInit {
       this.ns.show("Nem sikerült módosítani (component)")
       console.log(subject)
     }
-  }
-
-  openAddSubject(): void{
-		const dialogRef = this.dialog.open(RatingComponent, {
-      // height: '400px',
-      width: '700px',
-    });
   }
 
 }

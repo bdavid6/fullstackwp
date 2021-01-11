@@ -27,11 +27,11 @@ export class Subject {
     @OneToMany(() => Result, result => result.sid)
     results = new Collection<Result>(this);
 
-    @ManyToMany(() => User, 'subjects', {owner: true})
-    users = new Collection<User>(this);
+    // @ManyToMany(() => User, 'subjects', {owner: true})
+    // users = new Collection<User>(this);
 
-    // @ManyToOne(() => Building)
-    // building!: Building;
+    @ManyToOne(() => Building)
+    building!: Building;
 
     @Property()
     createdAt = new Date();

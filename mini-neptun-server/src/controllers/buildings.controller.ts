@@ -22,8 +22,8 @@ buildingsRouter
             res.status(200).send({id: building.id});
         } else {
             const building = new Building();
-            wrap(building).assign(req.body);
-            //wrap(building).assign(req.body, { em: req.orm.em });
+            // wrap(building).assign(req.body);
+            wrap(building).assign(req.body, { em: req.orm.em });
             await req.buildingRepository!.persistAndFlush(building);
             res.status(200).send({id: building.id});
         }

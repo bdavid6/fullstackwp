@@ -1,4 +1,5 @@
 import { Role } from "src/app/enums/role.enum";
+import { Result } from "./result";
 
 export interface User {
     id: number,
@@ -7,4 +8,5 @@ export interface User {
     e_mail: string,
     role: Role,
     password: string,
+    results: Result[]
 }

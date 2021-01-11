@@ -1,7 +1,7 @@
 <mat-card>
     <mat-card-header>
         <mat-card-title>{{(ss.subject$ | async)!.name}}</mat-card-title>
-        <mat-card-subtitle>{{(ss.subject$ | async)!.code}}</mat-card-subtitle>
+        <mat-card-subtitle>Kód:<span>{{(ss.subject$ | async)!.code}}</span></mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
         <div class="desc">
@@ -25,10 +25,13 @@
         <mat-card-title>Értékelés</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <mat-list>
-            <div style="width: 100%; margin: 15px;">Név<span style="float: right;">Jegy</span></div>
-            <mat-divider></mat-divider>
-            <mat-list-item *ngFor="let i of [0,1,2,3,4,5,6,7,8,9,10]" >Tanuló {{i}}<button mat-button style="margin-left: auto;" (click)="openRating()">Értékel</button></mat-list-item>
-        </mat-list>
+        <table>
+            <tr>
+                <th>Név</th><th colspan="2">Jegy</th>
+            </tr>
+            <tr *ngFor="let i of (rs.results$ | async)">
+                <td>{{i.uid.name}}</td><td>{{i.mark}}</td><td><button mat-icon-button (click)="openRating()"><mat-icon>edit</mat-icon></button></td>
+            </tr>
+        </table>
     </mat-card-content>
 </mat-card>

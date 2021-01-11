@@ -1,5 +1,6 @@
 import { wrap } from "@mikro-orm/core";
 import { Router } from "express";
+import { Result } from "../entities/Result";
 import { Subject } from "../entities/Subject";
 import { User } from "../entities/User";
 
@@ -8,6 +9,7 @@ export const usersRouter = Router();
 usersRouter
     .use((req, res, next) => {
         req.userRepository = req.orm.em.getRepository(User);
+        req.resultRepository = req.orm.em.getRepository(Result);
         next();
     })
     .get('/', async (req, res) => {
@@ -47,13 +49,19 @@ usersRouter
     //     await req.userRepository!.persistAndFlush(user);
     //     res.send(user);
     // })
-    .post('/:id/subjects', async (req, res) => {
+    .post('/:id/subjects', async (req, res) => {    // Ezt használjuk tárgyfelvételnél!!!!
         const id = parseInt(req.params.id);
         const user = await req.userRepository!.findOne({ id }, ['subjects']);
         if (user){
             const subject = req.orm.em.getReference(Subject, req.body.subject);
             if (subject){
                 user.subjects.add(subject);
+                let result = await req.resultRepository!.findOne({uid: id, sid: subject.id}); // result lekérése
+                if(!result){    // Ha nem létezik létrehozzuk
+                    result = new Result();
+                    wrap(result).assign({uid: id, sid: subject.id, mark: 0}, {em: req.orm.em});
+                    await req.resultRepository!.persistAndFlush(result);
+                }
             }
             await req.userRepository!.persistAndFlush(user);
             res.send(subject);

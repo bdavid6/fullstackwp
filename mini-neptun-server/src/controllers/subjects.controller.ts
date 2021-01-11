@@ -1,12 +1,15 @@
-import { wrap } from "@mikro-orm/core";
+import { Collection, wrap } from "@mikro-orm/core";
 import { Router } from "express"
+import { Result } from "../entities/Result";
 import { Subject } from "../entities/Subject";
+import { User } from "../entities/User";
 
 export const subjectsRouter = Router();
 
 subjectsRouter
     .use((req, res, next) => {
         req.subjectRepository = req.orm.em.getRepository(Subject);
+        req.entityManager = req.orm.em;
         next();
     })
     .get('/', async (req, res) => {
@@ -15,7 +18,7 @@ subjectsRouter
     })
     .get('/:id', async (req, res) => {
         const id = parseInt(req.params.id);
-        const subject = await req.subjectRepository!.findOne({ id }, ['users']);
+        const subject = await req.subjectRepository!.findOne({ id }, ['users', 'users.results']);
         if (subject){
             res.send(subject);
         } else {
@@ -35,9 +38,11 @@ subjectsRouter
     })
     .get('/:id/users', async (req, res) => {
         const id = parseInt(req.params.id);
-        const subject = await req.subjectRepository!.findOne({ id }, ['users']);
+        // const subject = await req.subjectRepository!.findOne({ id }, ['users']);
+        const subject = await req.entityManager!.findOne(Subject, {id: id}, ['users.results']);
+        // console.log(subject?.users)
         if (subject){
-            res.send(subject.users);
+            res.send(subject.results);
         } else {
             res.sendStatus(404);
         }

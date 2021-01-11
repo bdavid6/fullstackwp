@@ -1,4 +1,4 @@
-import { EntityRepository, MikroORM } from "@mikro-orm/core";
+import { EntityManager, EntityRepository, MikroORM } from "@mikro-orm/core";
 import { Building } from "./entities/Building";
 import { Subject } from "./entities/Subject";
 import { Result } from "./entities/Result";
@@ -12,6 +12,7 @@ declare global {
             userRepository?: EntityRepository<Users>;
             buildingRepository?: EntityRepository<Building>;
             resultRepository?: EntityRepository<Result>;
+            entityManager?: EntityManager;
         }
     }
 }

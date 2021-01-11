@@ -10,6 +10,7 @@ import { trigger } from '@angular/animations';
 import { BuildingService } from './building.service';
 import { TagContentType } from '@angular/compiler';
 import { Router } from '@angular/router';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,9 @@ export class SubjectService {
     `Bearer ${localStorage.getItem('token')}`
   )*/
 
-  public subjects$ = new BehaviorSubject<Subject[]>([])
-  public subject$ = new BehaviorSubject<Subject>(<Subject>{})
+  public subjects$ = new BehaviorSubject<Subject[]>([]);
+  public subject$ = new BehaviorSubject<Subject>(<Subject>{});
+  public students$ = new BehaviorSubject<User[]>([]);
 
   constructor(
     private http: HttpClient,
@@ -51,6 +53,22 @@ export class SubjectService {
     this.http.get<Subject>(`${baseUrl}/subjects/${id}`, { headers: header }).subscribe(
       i => {
         this.subject$.next(i);
+      },
+      error => {
+        console.log(error);
+        this.router.navigate(['/404']);
+      }
+    )
+  }
+
+  public getStudents(id: number): void {
+    const header = new HttpHeaders().set(
+      'Authorization', `Bearer ${localStorage.getItem('token')}`
+    );
+    this.http.get<User[]>(`${baseUrl}/subjects/${id}/users`, { headers: header })
+    .subscribe(
+      i => {
+        this.students$.next(i);
       },
       error => {
         console.log(error);

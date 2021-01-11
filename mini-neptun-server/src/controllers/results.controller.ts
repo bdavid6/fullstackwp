@@ -65,6 +65,20 @@ resultsRouter
             res.sendStatus(404);
         }
     })
+
+    .put('/:sid/:uid', async (req, res) => {
+        const uid = parseInt(req.params.uid);
+        const sid = parseInt(req.params.sid);
+        const result = await req.resultRepository!.findOne({ sid: sid, uid: uid });
+        if (result){
+            wrap(result).assign(req.body, { em: req.orm.em });
+            await req.resultRepository!.persistAndFlush(result);
+            res.send(result);
+        } else {
+            res.sendStatus(404);
+        }
+    })
+
     .delete('/:id', async (req, res) => {
         const id = parseInt(req.params.id);
         const result = await req.resultRepository!.nativeDelete({ id });

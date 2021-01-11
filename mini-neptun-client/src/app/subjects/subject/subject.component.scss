@@ -19,4 +19,23 @@ mat-card {
 		border-bottom: 1px solid gray;
 		border-top: 1px solid gray;
 	}
+
+	th {
+		text-align: left;
+		padding: 15px;
+		border-bottom: 3px double gray;
+	}
+
+	tr:hover {
+		background-color: darken($color: gray, $amount: 20);
+	}
+
+	td:last-child {
+		text-align: right;
+	}
+
+	span {
+		font-weight: 900;
+		margin-left: 10px;
+	}
 }
