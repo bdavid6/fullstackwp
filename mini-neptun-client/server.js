@@ -17,12 +17,12 @@ const foreceSSL = function() {
 
 // Statikus állományok elérésének definiálása:
 
-app.use(express.static(__dirname + '/dist/mini-neptun-client'));
+app.use(express.static(__dirname + '/dist/okt-rend-client'));
 
 // PathLocationStrategy kezelése, azaz minden URI áritányítás index.html-re, ahol a továbbiakban az Angular Routing kezeli:
 
 app.get('/*', function(req, res) {
-	res.sendFile(path.join(__dirname + '/dist/mini-neptun-client/index.html'));
+	res.sendFile(path.join(__dirname + '/dist/okt-rend-client/index.html'));
 });
 
 // Express figyeljen a 8080-as porton:
