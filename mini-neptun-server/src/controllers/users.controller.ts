@@ -10,6 +10,7 @@ usersRouter
     .use((req, res, next) => {
         req.userRepository = req.orm.em.getRepository(User);
         req.resultRepository = req.orm.em.getRepository(Result);
+        req.entityManager = req.orm.em;
         next();
     })
     .get('/', async (req, res) => {
@@ -25,11 +26,11 @@ usersRouter
             res.sendStatus(404);
         }
     })
-    .get('/:id/subjects', async (req, res) => {
+    .get('/:id/subjects', async (req, res) => { // Felhasználó által felvett tárgyak lekérése.
         const id = parseInt(req.params.id);
-        const user = await req.userRepository!.findOne({ id }, []);
-        if (user) {
-            res.send(user.subjects);
+        const subjects = await req.entityManager!.find(Subject, { results: {uid: id} }, {}); 
+        if (subjects) {
+            res.send(subjects);
         } else {
             res.sendStatus(404);
         }

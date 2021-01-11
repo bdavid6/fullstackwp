@@ -2,7 +2,7 @@
 <div class="accordion-wrapper">
     <h1>Tárgyak</h1>
     <!-- <mat-accordion multi> -->
-    <mat-accordion>
+    <mat-accordion multi>
         <mat-expansion-panel *ngFor="let subject of (ss.subjects$ | async)">
             <mat-expansion-panel-header>
                 <mat-panel-title class="card-title">
@@ -17,7 +17,7 @@
             {{ subject.code }}<br>
             {{ subject.credit }}<br>
             <div style="text-align: justify;">{{ subject.description }}</div>
-            <mat-action-row>
+            <mat-action-row *ngIf="(userRole$ | async)">
                 <button mat-button color="basic" routerLink="/subjects/{{subject.id}}"
                     [disabled]="!(userRole$ | async)">Értékelés</button>
                 <button mat-button color="basic" (click)="openModifySubject(subject.id)"
@@ -25,11 +25,14 @@
                 <button mat-button color="warn" (click)="deleteSubject(subject.id)"
                     [disabled]="!(userRole$ | async)">Törlés</button>
             </mat-action-row>
+            <mat-action-row *ngIf="!(userRole$ | async)">
+                <button mat-button color="basic" (click)="console.log('Hello')">Felvesz</button>
+            </mat-action-row>
         </mat-expansion-panel>
     </mat-accordion>
 </div>
 
-<button mat-mini-fab color="accent" class="add-button" (click)="openAddSubject()" matTooltip="Új tárgy felvétele"
+<button mat-mini-fab [style]="!(userRole$ | async) ? 'display: none' : ''" color="accent" class="add-button" (click)="openAddSubject()" matTooltip="Új tárgy felvétele"
     [disabled]="!(userRole$ | async)">
     <mat-icon>add</mat-icon>
 </button>
