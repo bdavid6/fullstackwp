@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 
 import { AuthService } from '../core/services/auth.service';
+import { BuildingService } from '../core/services/building.service';
 import { SubjectService } from '../core/services/subject.service';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { ModifySubjectComponent } from './modify-subject/modify-subject.component';
@@ -19,9 +20,11 @@ export class SubjectsComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public ss: SubjectService,
-    private as: AuthService
+    private as: AuthService,
+    private bs: BuildingService,
   ) { 
     this.userRole$ = as.getRole();
+    bs.getBuildings();
     this.userRole$.subscribe(v => {console.log(v)});
   }
 
