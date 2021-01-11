@@ -20,7 +20,7 @@
                 <div style="text-align: justify;">{{ subject.description }}</div>
                 <mat-action-row>
                     <!--<button mat-button color="warn" (click)="deleteSubject(subject.id)">Törlés</button>-->
-                    <button mat-button color="warn" >Leadás</button>
+                    <button mat-button color="warn" (click)="deleteSubject(subject.id)">Leadás</button>
                 </mat-action-row>
             </mat-expansion-panel>
         </mat-accordion>
