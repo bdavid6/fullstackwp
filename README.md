@@ -1,5 +1,8 @@
-# mini Neptun       [![Build Status](https://travis-ci.com/bdavid6/fullstackwp.svg?branch=main)](https://travis-ci.com/bdavid6/fullstackwp)
+# mini Neptun
 A neptun egy leegyszerűsített változata, amely a hallgatók információját tárolja, valamint segít a tantárgyak közötti eligazodásban és azok kezelésében.
+
+## Elérhetőség:
+- https://mini-neptun-client.herokuapp.com/
 
 ## 1. Szerepkörök:
 - Látogató: csak a belépő felületet látja

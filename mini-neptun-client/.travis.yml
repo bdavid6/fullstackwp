@@ -1,0 +1,43 @@
+# Környezeti beállítások:
+
+language: node_js
+node_js: node
+
+sudo: false
+
+# Figyelt branch:
+
+branches:
+  only:
+  - main
+
+# Cache engedélyezés node_modules -ra:
+
+cache:
+  directories:
+    - node_modules
+
+# Angular CLI biztosítása a deploy alatt:
+
+before_script:
+  - npm install -g @angular/cli
+
+script:
+  - ng lint
+  - ng test --watch=false
+
+# Amennyiben nincsenek tesztek, úgy a "script" definiálására továbbra is szükség van (különben alapértelmezetten indul az npm test):
+
+# script: echo "npm test temporarily disabled"
+
+# Heroku - Travis-CI beállítások:
+
+deploy:
+  provider: heroku
+  skip_cleanup: true
+  keep-history: true
+  # API kulcs megadása Travis-CI felületén kerüljön hozzáadásra, ahol a változó neve: HEROKU_API_KEY értéke, pedig a Heroku UI-ban a projekt beállításai alatt található
+  api-key:
+    secure: "NAx1jGH93aZYdSmQuhD+EcazZYlU7U/56eBtqafVCsexwxVHwS/itgpIieFBzonjt7T6lLa9+zLLyyiif49b2ZdOtB94Dpf0Bxt3rtBkvZHOlNrqSmL35CknqoJ4EcfGO+EVsRgUaG/HWpclNgETqis8pYJ6n5AaX4F+d1M8NTw21hE1UtHnJ+SQqSSJYxR/bxERnmzyQsSWukbN7nR/kGwkHguhbG2AjjhMm86XVmYU9C5kVC5ZnRcfVSUgKi4gJyUwGW5mTSmCG0vgkZPnXVjbIxBej9erT1K/0HuJRWKmmE7/8zo1ihiBKKHs8zBHV8pjRC8hg/bcFAPdEcUICxNTZlyEVmeHkPAX7SSHHvWhSqhhQhBi++QQnnIsjhBnYqNC/9BCzurgvpSFcnEVyZxAqctc3FpS6mHM+JDML8UT2m4tT6x4SDE7We+szEv/xLiI3n5dBDVNPNnvl+yylmk1qvndx6psksCuH1B9SskQLK+ilGF6D4NggL99QtLwB6XYE/kCqNd9G4U1tKSb4NTKSN3iVOHAhOtSP2dybH6oCAH9QHyUzdGvZjCEluzZGs0cFvjhHRI+mDRnjHTKvZiLIB4pvjtwK7lSgyf89xr5VEvw8KyVyjSQ71XLi+VRn7vhRG2iVhELNMZFM96VsGXSewBCsdvlaCEyOTg95sw="
+  app: mini-neptun-client
+  on: main
