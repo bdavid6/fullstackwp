@@ -6,17 +6,17 @@
         <mat-expansion-panel *ngFor="let subject of (ss.subjects$ | async)">
             <mat-expansion-panel-header>
                 <mat-panel-title class="card-title">
-                    {{ subject.name }}#{{subject.id}}
+                    {{ subject.name }}
+                    <small class="small">#{{subject.id}}</small>
                 </mat-panel-title>
                 <mat-panel-description class="grid-container">
-                    <div>{{subject.description.length > 20 ? subject.description.slice(0, 20) + "..." :
-                        subject.description}}</div>
-                    <div>{{ subject.room }}</div>
+                    <div class="values">kredit: {{ subject.credit }}</div>
+                    <!--<div>{{subject.description.length > 20 ? subject.description.slice(0, 20) + "..." :
+                        subject.description}}</div>-->
+                    <div class="values">helyszín: {{ subject.room }}</div>
                 </mat-panel-description>
             </mat-expansion-panel-header>
-            {{ subject.code }}<br>
-            {{ subject.credit }}<br>
-            <div style="text-align: justify;">{{ subject.description }}</div>
+            <div style="text-align: justify; padding-left: 10px;">{{ subject.description }}</div>
             <mat-action-row *ngIf="(userRole$ | async)">
                 <button mat-button color="basic" routerLink="/subjects/{{subject.id}}"
                     [disabled]="!(userRole$ | async)">Értékelés</button>
