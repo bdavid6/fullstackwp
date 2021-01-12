@@ -26,7 +26,7 @@ export class SubjectsComponent implements OnInit {
     private rs: ResultService,
     private as: AuthService,
     private bs: BuildingService,
-  ) { 
+  ) {
     this.userRole$ = as.getRole();
     bs.getBuildings();
     // this.userRole$.subscribe(v => {console.log(v)});
@@ -39,21 +39,27 @@ export class SubjectsComponent implements OnInit {
     // }
   }
 
-  openAddSubject(): void{
-		const dialogRef = this.dialog.open(AddSubjectComponent, {
+  openAddSubject(): void {
+    const dialogRef = this.dialog.open(AddSubjectComponent, {
       // height: '400px',
       width: '700px',
     });
   }
 
-  openModifySubject(id: number): void{
+  openModifySubject(id: number): void {
     this.ss.getSubject(id);
-    const dialogRef = this.dialog.open(ModifySubjectComponent, {
-      // height: '400px',
-      width: '700px',
-    });
+    let db = 0;
+    this.ss.subject$.subscribe(subject => {
+      if (subject.id && db == 0) {
+        ++db;
+        const dialogRef = this.dialog.open(ModifySubjectComponent, {
+          // height: '400px',
+          width: '700px',
+        });
+      }
+    })
   }
-  
+
   deleteSubject(id: number): void {
     this.ss.deleteSubject(id);
   }
