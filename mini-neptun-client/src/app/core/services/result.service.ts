@@ -38,10 +38,10 @@ export class ResultService {
       i => {
         console.log("hello");
         console.log(i);
-        this.ns.show("Sikeres tárgyfelvétel!");
+        // this.ns.show("Sikeres tárgyfelvétel!");
       },
       error => {
-        this.ns.show("Sikertelen tárgyfelvétel!");
+        // this.ns.show("Sikertelen tárgyfelvétel!");
       }
     )
   }

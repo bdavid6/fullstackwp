@@ -1,13 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { Subject } from 'src/app/core/interfaces/subject';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { BuildingService } from 'src/app/core/services/building.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { SubjectService } from 'src/app/core/services/subject.service';
-import { RatingComponent } from 'src/app/rating/rating.component';
 
 @Component({
   selector: 'app-modify-subject',
@@ -26,10 +25,10 @@ export class ModifySubjectComponent implements OnInit {
     private ns: NotificationService,
     private as: AuthService,
     public bs: BuildingService,
+    public dialogRef: MatDialogRef<ModifySubjectComponent>,
   ) {
     this.userRole$ = as.getRole();
     bs.getBuildings();
-
     this.ss.subject$.subscribe(
       value => {
         this.id = value.id;
@@ -39,7 +38,7 @@ export class ModifySubjectComponent implements OnInit {
           description: [value.description, Validators.required],
           credit: [value.credit, Validators.required],
           room: [value.room, Validators.required],
-          building: [value.building, Validators.required],
+          building: [value.building.id, Validators.required],
         });
       }
     )
@@ -53,6 +52,7 @@ export class ModifySubjectComponent implements OnInit {
     subject.id = this.id;
     if (form.valid) {
       this.ss.modifySubject(subject);
+      this.dialogRef.close()
     } else {
       this.ns.show("Nem sikerült módosítani (component)")
       console.log(subject)

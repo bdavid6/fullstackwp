@@ -18,7 +18,7 @@ subjectsRouter
     })
     .get('/:id', async (req, res) => {
         const id = parseInt(req.params.id);
-        const subject = await req.subjectRepository!.findOne({ id }, []);
+        const subject = await req.subjectRepository!.findOne({ id: id }, ['building']);
         if (subject){
             res.send(subject);
         } else {

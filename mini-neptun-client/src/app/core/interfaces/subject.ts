@@ -7,5 +7,5 @@ export interface Subject {
     description: string,
     credit: number,
     room: string,
-    building: string
+    building: Building
 }

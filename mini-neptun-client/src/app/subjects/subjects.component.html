@@ -20,7 +20,7 @@
             <mat-action-row *ngIf="(userRole$ | async)">
                 <button mat-button color="basic" routerLink="/subjects/{{subject.id}}"
                     [disabled]="!(userRole$ | async)">Értékelés</button>
-                <button mat-button color="basic" (click)="openModifySubject(subject.id)"
+                <button mat-button color="basic" (click)="openModifySubject(subject.id);"
                     [disabled]="!(userRole$ | async)">Módosítás</button>
                 <button mat-button color="warn" (click)="deleteSubject(subject.id)"
                     [disabled]="!(userRole$ | async)">Törlés</button>

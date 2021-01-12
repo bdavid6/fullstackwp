@@ -29,14 +29,14 @@ export class SubjectsComponent implements OnInit {
   ) { 
     this.userRole$ = as.getRole();
     bs.getBuildings();
-    this.userRole$.subscribe(v => {console.log(v)});
+    // this.userRole$.subscribe(v => {console.log(v)});
   }
 
   ngOnInit(): void {
     this.ss.getSubjects();
-    if(this.ss.subjects$.value.length > 0){
-      this.ss.getSubject(this.ss.subjects$.getValue()[0].id);
-    }
+    // if(this.ss.subjects$.value.length > 0){
+    //   this.ss.getSubject(this.ss.subjects$.getValue()[0].id);
+    // }
   }
 
   openAddSubject(): void{
@@ -48,7 +48,7 @@ export class SubjectsComponent implements OnInit {
 
   openModifySubject(id: number): void{
     this.ss.getSubject(id);
-		const dialogRef = this.dialog.open(ModifySubjectComponent, {
+    const dialogRef = this.dialog.open(ModifySubjectComponent, {
       // height: '400px',
       width: '700px',
     });

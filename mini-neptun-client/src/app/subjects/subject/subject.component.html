@@ -17,6 +17,10 @@
                 <td>Terem:</td>
                 <td>{{(ss.subject$ | async)!.room}}</td>
             </tr>
+            <tr>
+                <td>Épület:</td>
+                <td>{{(ss.subject$ | async)!.building.name}}</td>
+            </tr>
         </table>
     </mat-card-content>
 </mat-card>
