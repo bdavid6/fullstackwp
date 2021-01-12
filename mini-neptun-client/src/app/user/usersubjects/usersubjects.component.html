@@ -11,9 +11,8 @@
                 </mat-panel-title>
                 <mat-panel-description class="grid-container">
                     <div class="values">kredit: {{ subject.credit }}</div>
-                    <!--<div>{{subject.description.length > 20 ? subject.description.slice(0, 20) + "..." :
-                        subject.description}}</div>-->
-                    <div class="values">helyszín: {{ subject.room }}</div>
+                    <div class="values">helyszín: {{subject.room.length > 20 ? subject.room.slice(0, 20) + "..." :
+                        subject.room}}</div>
                 </mat-panel-description>
             </mat-expansion-panel-header>
             <div style="text-align: justify; padding-left: 10px;">{{ subject.description }}</div>

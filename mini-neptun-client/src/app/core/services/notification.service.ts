@@ -10,7 +10,7 @@ export class NotificationService {
 
   public show(message: any): void {
     let config = new MatSnackBarConfig();
-    config.duration = 1350;
+    config.duration = 950;
     this.snackBar.open(message, 'X', config);
   }
 }
