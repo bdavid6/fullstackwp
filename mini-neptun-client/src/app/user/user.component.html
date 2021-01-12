@@ -3,19 +3,15 @@
     <div mat-card-avatar class="example-header-image">
       <mat-icon>person</mat-icon>
     </div>
-    <mat-card-title>Kovács Béla</mat-card-title>
-    <mat-card-subtitle>Tanuló</mat-card-subtitle>
+    <mat-card-title>{{(us.user$ | async)!.name}}</mat-card-title>
+    <mat-card-subtitle>{{(us.user$ | async)!.role}}</mat-card-subtitle>
   </mat-card-header>
   <!--<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
   <mat-card-content>
     <table>
       <tr>
-        <td>Felvett kreditek:</td>
-        <td>11</td>
-      </tr>
-      <tr>
         <td>E-mail cím:</td>
-        <td>kovacs.bela11@gmail.com</td>
+        <td>{{(us.user$ | async)!.e_mail}}</td>
       </tr>
     </table>
   </mat-card-content>
